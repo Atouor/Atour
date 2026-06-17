@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashport/dashboard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/Hedear/header.component';
+import { BackgroundAnimationComponent } from './components/background-animation/background-animation.component';
 import { TransferDataService } from './services/Transform.service';
 
 @NgModule({
@@ -13,7 +14,8 @@ import { TransferDataService } from './services/Transform.service';
     AppComponent,
     HeaderComponent,
     DashboardComponent,
-    FooterComponent
+    FooterComponent,
+    BackgroundAnimationComponent,
   ],
   imports: [
     BrowserModule,
