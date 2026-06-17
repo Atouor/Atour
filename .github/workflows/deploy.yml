@@ -31,7 +31,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular
-        run: npm run build -- --base-href=/${{ github.event.repository.name }}/
+        run: npm run build -- --base-href=/
 
       - name: Add .nojekyll
         run: touch dist/atour/.nojekyll
