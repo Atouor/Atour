@@ -217,12 +217,30 @@
   cursor: default;
 
   .card-icon {
-    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
     margin-bottom: 14px;
-    transition: transform var(--ease-spring);
+    border-radius: 12px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid rgba(178, 31, 75, 0.22);
+    transition: transform var(--ease-spring), background var(--ease), box-shadow var(--ease);
+
+    svg {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
   }
 
-  &:hover .card-icon { transform: scale(1.15) rotate(-5deg); }
+  &:hover .card-icon {
+    transform: scale(1.08) rotate(-4deg);
+    background: var(--accent-glow);
+    box-shadow: 0 6px 20px var(--accent-glow);
+  }
 
   h3 {
     font-size: 16px;

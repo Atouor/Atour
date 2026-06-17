@@ -36,13 +36,13 @@ export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
   en: {
     nav: { home: 'Home', about: 'About', experience: 'Experience', skills: 'Skills', contact: 'Contact' },
     hero: {
-      badge: 'Open to opportunities',
+      badge: 'Front-End Developer',
       title: "Hi, I'm",
       titleName: 'Alireza',
       subtitle: 'Lead Front-End Developer · Team Lead',
-      desc: 'I build enterprise Angular applications with clean architecture and sharp UI. 4+ years leading Agile teams at Ravan Ertebat Asr on the Kudos platform.',
-      btnWork: 'My Work →',
-      btnContact: 'Get in Touch',
+      desc: 'I design and deliver enterprise Angular applications at Ravan Ertebat Asr, leading Agile teams on the Kudos HR platform for 4+ years.',
+      btnWork: 'View Experience →',
+      btnContact: 'Contact Details',
       scroll: 'scroll',
       float1Title: 'Angular', float1Sub: 'Specialty',
       float2Title: 'Agile Lead', float2Sub: '4+ Years',
@@ -52,7 +52,7 @@ export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
       tag: 'About Me',
       heading: 'Who I',
       headingAccent: 'am',
-      desc: 'Computer Science graduate passionate about clean code and beautiful interfaces.',
+      desc: 'Computer Science graduate focused on building reliable, scalable front-end systems for enterprise products.',
       cards: {
         profile: {
           title: 'Profile',
@@ -60,11 +60,11 @@ export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
         },
         role: {
           title: 'Current Role',
-          text: 'Team lead & UI developer at Ravan Ertebat Asr. Running Agile sprints and shipping features for the Kudos HR platform.',
+          text: 'Team lead and front-end developer at Ravan Ertebat Asr, managing Agile delivery and core UI development for the Kudos HR platform.',
         },
         focus: {
-          title: 'Focus',
-          text: 'Strong in algorithms & data structures. Android/Java experience. Growing toward AI and advanced computer science.',
+          title: 'Technical Focus',
+          text: 'Enterprise web applications with Angular and TypeScript, analytical dashboards, performance optimization, and team mentorship.',
         },
       },
     },
@@ -108,9 +108,9 @@ export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
     },
     contact: {
       tag: 'Contact',
-      heading: "Let's",
-      headingAccent: 'connect',
-      desc: 'Open to collaborations, freelance, and new opportunities.',
+      heading: 'Contact',
+      headingAccent: 'details',
+      desc: 'For professional inquiries, you can reach me through the channels below.',
       email: 'Email', phone: 'Phone', location: 'Location', locationVal: 'Ardabil, Iran',
     },
     footer: {
@@ -123,13 +123,13 @@ export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
   fa: {
     nav: { home: 'خانه', about: 'درباره من', experience: 'تجربه', skills: 'مهارت‌ها', contact: 'تماس' },
     hero: {
-      badge: 'آماده همکاری',
+      badge: 'توسعه‌دهنده فرانت‌اند',
       title: 'سلام، من',
       titleName: 'علیرضا',
       subtitle: 'توسعه‌دهنده ارشد فرانت‌اند · لید تیم',
-      desc: 'اپلیکیشن‌های سازمانی با Angular می‌سازم — معماری تمیز و UI دقیق. بیش از ۴ سال لید تیم اجایل در شرکت روان ارتباط عصر روی پلتفرم Kudos.',
-      btnWork: 'کارهای من ←',
-      btnContact: 'تماس با من',
+      desc: 'طراحی و توسعه اپلیکیشن‌های سازمانی با Angular در شرکت روان ارتباط عصر — بیش از ۴ سال لید تیم اجایل روی پلتفرم HR به نام Kudos.',
+      btnWork: 'مشاهده سوابق ←',
+      btnContact: 'اطلاعات تماس',
       scroll: 'اسکرول',
       float1Title: 'Angular', float1Sub: 'تخصص اصلی',
       float2Title: 'Agile Lead', float2Sub: '۴+ سال',
@@ -139,7 +139,7 @@ export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
       tag: 'درباره من',
       heading: 'من',
       headingAccent: 'کیستم',
-      desc: 'فارغ‌التحصیل علوم کامپیوتر با علاقه به کد تمیز و رابط کاربری زیبا.',
+      desc: 'فارغ‌التحصیل علوم کامپیوتر با تمرکز بر توسعه سیستم‌های فرانت‌اند پایدار و مقیاس‌پذیر برای محصولات سازمانی.',
       cards: {
         profile: {
           title: 'پروفایل',
@@ -147,11 +147,11 @@ export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
         },
         role: {
           title: 'شغل فعلی',
-          text: 'لید تیم و توسعه‌دهنده UI در شرکت روان ارتباط عصر. مدیریت اسپرینت‌های اجایل و توسعه پلتفرم HR به نام Kudos.',
+          text: 'لید تیم و توسعه‌دهنده فرانت‌اند در شرکت روان ارتباط عصر؛ مدیریت تحویل اجایل و توسعه رابط کاربری پلتفرم HR به نام Kudos.',
         },
         focus: {
-          title: 'تمرکز',
-          text: 'تسلط بر الگوریتم و ساختمان داده. تجربه اندروید با Java. علاقه‌مند به یادگیری عمیق‌تر در حوزه هوش مصنوعی.',
+          title: 'تمرکز فنی',
+          text: 'اپلیکیشن‌های وب سازمانی با Angular و TypeScript، داشبوردهای تحلیلی، بهینه‌سازی عملکرد و منتورینگ تیم.',
         },
       },
     },
@@ -195,9 +195,9 @@ export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
     },
     contact: {
       tag: 'تماس',
-      heading: 'بیایید',
-      headingAccent: 'در ارتباط باشیم',
-      desc: 'آماده همکاری، پروژه فریلنس و فرصت‌های شغلی جدید.',
+      heading: 'اطلاعات',
+      headingAccent: 'تماس',
+      desc: 'برای ارتباط حرفه‌ای می‌توانید از راه‌های زیر استفاده کنید.',
       email: 'ایمیل', phone: 'تلفن', location: 'موقعیت', locationVal: 'اردبیل، ایران',
     },
     footer: {
