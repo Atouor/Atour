@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LanguageService } from 'src/app/services/language.service';
+import { scrollToSection } from 'src/app/utils/scroll.util';
 
 interface Skill { name: string; level: number; }
 
@@ -99,6 +100,6 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   scrollTo(id: string, e: Event): void {
     e.preventDefault();
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    scrollToSection(id);
   }
 }

@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@
 import { Subscription } from 'rxjs';
 import { LanguageService } from 'src/app/services/language.service';
 import { ThemeService } from 'src/app/services/theme.service';
+import { scrollToSection } from 'src/app/utils/scroll.util';
 
 @Component({
   selector: 'app-header',
@@ -57,7 +58,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.menuOption = id;
     this.mobileOpen = false;
     document.body.style.overflow = '';
-    document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
+    scrollToSection(id.toLowerCase());
   }
 
   toggleMobile(): void {
