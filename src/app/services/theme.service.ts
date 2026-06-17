@@ -9,8 +9,7 @@ export class ThemeService {
 
   init(): void {
     const saved = localStorage.getItem(this.key) as Theme | null;
-    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-    this.set(saved || (prefersLight ? 'light' : 'dark'), false);
+    this.set(saved || 'dark', false);
   }
 
   toggle(): void {

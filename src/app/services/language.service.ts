@@ -10,8 +10,7 @@ export class LanguageService {
 
   init(): void {
     const saved = localStorage.getItem(this.key) as AppLang | null;
-    const browserFa = navigator.language.startsWith('fa');
-    this.set(saved || (browserFa ? 'fa' : 'en'), false);
+    this.set(saved || 'en', false);
   }
 
   get lang(): AppLang { return this._lang; }
