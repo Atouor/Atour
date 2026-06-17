@@ -37,10 +37,25 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.sub = this.i18n.changed$.subscribe(() => this.cdr.markForCheck());
+    this.sub = this.i18n.changed$.subscribe(() => {
+      this.cdr.markForCheck();
+      setTimeout(() => this.observeReveals(), 0);
+    });
   }
 
   ngAfterViewInit(): void {
+    this.setupObserver();
+    this.observeReveals();
+    setTimeout(() => this.observeReveals(), 150);
+    window.addEventListener('load', this.onPageLoad);
+  }
+
+  private onPageLoad = (): void => {
+    this.observeReveals();
+  };
+
+  private setupObserver(): void {
+    this.observer?.disconnect();
     this.observer = new IntersectionObserver(
       entries => entries.forEach(e => {
         if (e.isIntersecting) {
@@ -49,16 +64,35 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
             this.skillsAnimated = true;
             this.cdr.markForCheck();
           }
+          this.observer?.unobserve(e.target);
         }
       }),
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
     );
-    setTimeout(() => {
-      document.querySelectorAll('.reveal').forEach(el => this.observer?.observe(el));
+  }
+
+  private observeReveals(): void {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.reveal:not(.in-view)').forEach(el => {
+          const rect = el.getBoundingClientRect();
+          const inViewport = rect.top < window.innerHeight * 0.92 && rect.bottom > 0;
+          if (inViewport) {
+            el.classList.add('in-view');
+            if (el.classList.contains('skills-bars')) {
+              this.skillsAnimated = true;
+              this.cdr.markForCheck();
+            }
+          } else {
+            this.observer?.observe(el);
+          }
+        });
+      });
     });
   }
 
   ngOnDestroy(): void {
+    window.removeEventListener('load', this.onPageLoad);
     this.observer?.disconnect();
     this.sub?.unsubscribe();
   }

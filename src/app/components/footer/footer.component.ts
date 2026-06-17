@@ -15,7 +15,7 @@ export class FooterComponent implements OnInit, OnDestroy {
     { label: 'Instagram', url: 'https://instagram.com/atouor?igshid=YmMyMTA2M2Y=', icon: 'assets/images/insta.png' },
     { label: 'X', url: 'https://twitter.com/atouor?t=j08dkb_AbZENUey2fMJN5Q&s=09', svg: true },
     { label: 'Telegram', url: 'https://t.me/Atouor', icon: 'assets/images/telegram.png' },
-    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/alireza-hosein-aghaie', icon: 'assets/images/linkin.jpeg' },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/alireza-hosein-aghaie-5685a0290/', icon: 'assets/images/linkin.jpeg' },
   ];
 
   constructor(
