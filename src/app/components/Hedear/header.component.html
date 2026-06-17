@@ -1,0 +1,43 @@
+<header class="header" [class.scrolled]="isScrolled">
+  <div class="container header-inner">
+    <a href="#home" class="logo" (click)="navigate('Home', $event)">
+      <span class="logo-mark">A</span>
+      <span class="logo-name">Atour</span>
+    </a>
+
+    <nav class="nav-desktop">
+      <a *ngFor="let item of navItems"
+         [href]="item.href"
+         [class.active]="menuOption === item.id"
+         (click)="navigate(item.id, $event)">{{ item.label }}</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="lang-btn" (click)="toggleLang()" [attr.aria-label]="i18n.t.lang.switchTo">
+        {{ i18n.t.lang.switchTo }}
+      </button>
+      <button class="theme-btn" (click)="toggleTheme()" [attr.aria-label]="theme.theme === 'dark' ? i18n.t.theme.light : i18n.t.theme.dark">
+        <span class="theme-icon" [class.show]="theme.theme === 'dark'">☀️</span>
+        <span class="theme-icon" [class.show]="theme.theme === 'light'">🌙</span>
+      </button>
+      <a href="#contact" class="btn btn-primary header-cta" (click)="navigate('Contact', $event)">{{ i18n.t.nav.contact }}</a>
+      <button class="menu-btn" [class.open]="mobileOpen" (click)="toggleMobile()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav-mobile" [class.open]="mobileOpen">
+    <div class="nav-mobile-bg" (click)="toggleMobile()"></div>
+    <div class="nav-mobile-panel">
+      <a *ngFor="let item of navItems; let i = index"
+         [href]="item.href"
+         [style.animation-delay]="i * 0.06 + 's'"
+         (click)="navigate(item.id, $event)">{{ item.label }}</a>
+      <button class="btn btn-outline lang-mobile" (click)="toggleLang()">{{ i18n.t.lang.switchTo }}</button>
+      <button class="btn btn-outline theme-mobile" (click)="toggleTheme()">
+        {{ theme.theme === 'dark' ? i18n.t.theme.light : i18n.t.theme.dark }}
+      </button>
+    </div>
+  </div>
+</header>
