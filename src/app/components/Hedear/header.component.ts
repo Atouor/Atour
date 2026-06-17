@@ -29,11 +29,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   get navItems() {
     const n = this.i18n.t.nav;
     return [
-      { id: 'Home', label: n.home, href: '#home' },
-      { id: 'About', label: n.about, href: '#about' },
-      { id: 'Experience', label: n.experience, href: '#experience' },
-      { id: 'Skills', label: n.skills, href: '#skills' },
-      { id: 'Contact', label: n.contact, href: '#contact' },
+      { id: 'Home', sectionId: 'home', label: n.home, href: '#home' },
+      { id: 'About', sectionId: 'about', label: n.about, href: '#about' },
+      { id: 'Experience', sectionId: 'experience', label: n.experience, href: '#experience' },
+      { id: 'Skills', sectionId: 'skills', label: n.skills, href: '#skills' },
+      { id: 'Contact', sectionId: 'contact', label: n.contact, href: '#contact' },
     ];
   }
 
@@ -53,12 +53,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.syncSection();
   }
 
-  navigate(id: string, e: Event): void {
+  navigate(id: string, sectionId: string, e: Event): void {
     e.preventDefault();
+    e.stopPropagation();
     this.menuOption = id;
     this.mobileOpen = false;
     document.body.style.overflow = '';
-    scrollToSection(id.toLowerCase());
+    scrollToSection(sectionId);
+    this.cdr.markForCheck();
   }
 
   toggleMobile(): void {
