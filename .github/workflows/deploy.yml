@@ -31,7 +31,10 @@ jobs:
         run: npm ci
 
       - name: Build Angular
-        run: npm run build
+        run: npm run build -- --base-href=/${{ github.event.repository.name }}/
+
+      - name: Add .nojekyll
+        run: touch dist/atour/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
