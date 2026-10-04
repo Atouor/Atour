@@ -6,16 +6,20 @@
     </a>
 
     <nav class="nav-desktop">
-      <a *ngFor="let item of navItems"
-         [href]="item.href"
-         [class.active]="menuOption === item.id"
-         (click)="navigate(item.id, item.sectionId, $event)">{{ item.label }}</a>
+      @for (item of navItems; track item) {
+        <a
+          [href]="item.href"
+          [class.active]="menuOption === item.id"
+        (click)="navigate(item.id, item.sectionId, $event)">{{ item.label }}</a>
+      }
     </nav>
 
     <div class="header-actions">
-      <button class="lang-btn" (click)="toggleLang()" [attr.aria-label]="i18n.t.lang.switchTo">
-        {{ i18n.t.lang.switchTo }}
-      </button>
+      <select class="lang-btn" [value]="i18n.lang" (change)="selectLang($event)" aria-label="Language">
+        @for (language of i18n.languages; track language.code) {
+          <option [value]="language.code">{{ language.label }}</option>
+        }
+      </select>
       <button class="theme-btn" (click)="toggleTheme()" [attr.aria-label]="theme.theme === 'dark' ? i18n.t.theme.light : i18n.t.theme.dark">
         <span class="theme-icon" [class.show]="theme.theme === 'dark'">☀️</span>
         <span class="theme-icon" [class.show]="theme.theme === 'light'">🌙</span>
@@ -30,11 +34,17 @@
   <div class="nav-mobile" [class.open]="mobileOpen">
     <div class="nav-mobile-bg" (click)="toggleMobile()"></div>
     <div class="nav-mobile-panel">
-      <a *ngFor="let item of navItems; let i = index"
-         [href]="item.href"
-         [style.animation-delay]="i * 0.06 + 's'"
-         (click)="navigate(item.id, item.sectionId, $event)">{{ item.label }}</a>
-      <button class="btn btn-outline lang-mobile" (click)="toggleLang()">{{ i18n.t.lang.switchTo }}</button>
+      @for (item of navItems; track item; let i = $index) {
+        <a
+          [href]="item.href"
+          [style.animation-delay]="i * 0.06 + 's'"
+        (click)="navigate(item.id, item.sectionId, $event)">{{ item.label }}</a>
+      }
+      <select class="btn btn-outline lang-mobile" [value]="i18n.lang" (change)="selectLang($event)" aria-label="Language">
+        @for (language of i18n.languages; track language.code) {
+          <option [value]="language.code">{{ language.label }}</option>
+        }
+      </select>
       <button class="btn btn-outline theme-mobile" (click)="toggleTheme()">
         {{ theme.theme === 'dark' ? i18n.t.theme.light : i18n.t.theme.dark }}
       </button>

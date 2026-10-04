@@ -1,13 +1,16 @@
-import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LanguageService } from 'src/app/services/language.service';
-import { ThemeService } from 'src/app/services/theme.service';
-import { scrollToSection } from 'src/app/utils/scroll.util';
+import { LanguageService } from '../../services/language.service';
+import { AppLang } from '../../i18n/translations';
+import { ThemeService } from '../../services/theme.service';
+import { scrollToSection } from '../../utils/scroll.util';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.less']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.less'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   menuOption = 'Home';
@@ -69,7 +72,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   toggleTheme(): void { this.theme.toggle(); }
-  toggleLang(): void { this.i18n.toggle(); }
+  selectLang(event: Event): void {
+    this.i18n.set((event.target as HTMLSelectElement).value as AppLang);
+  }
 
   private syncSection(): void {
     const y = window.scrollY + 120;
