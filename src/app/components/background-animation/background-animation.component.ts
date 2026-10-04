@@ -6,6 +6,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 interface Blob {
@@ -30,9 +31,11 @@ interface Particle {
 }
 
 @Component({
-  selector: 'app-background-animation',
-  templateUrl: './background-animation.component.html',
-  styleUrls: ['./background-animation.component.less'],
+    selector: 'app-background-animation',
+    templateUrl: './background-animation.component.html',
+    styleUrls: ['./background-animation.component.less'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class BackgroundAnimationComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('canvas') canvasRef!: ElementRef<HTMLCanvasElement>;
