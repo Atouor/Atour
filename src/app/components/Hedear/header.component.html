@@ -17,7 +17,7 @@
     <div class="header-actions">
       <select class="lang-btn" [value]="i18n.lang" (change)="selectLang($event)" aria-label="Language">
         @for (language of i18n.languages; track language.code) {
-          <option [value]="language.code">{{ language.label }}</option>
+          <option [value]="language.code" [selected]="language.code === i18n.lang">{{ language.label }}</option>
         }
       </select>
       <button class="theme-btn" (click)="toggleTheme()" [attr.aria-label]="theme.theme === 'dark' ? i18n.t.theme.light : i18n.t.theme.dark">
@@ -42,7 +42,7 @@
       }
       <select class="btn btn-outline lang-mobile" [value]="i18n.lang" (change)="selectLang($event)" aria-label="Language">
         @for (language of i18n.languages; track language.code) {
-          <option [value]="language.code">{{ language.label }}</option>
+          <option [value]="language.code" [selected]="language.code === i18n.lang">{{ language.label }}</option>
         }
       </select>
       <button class="btn btn-outline theme-mobile" (click)="toggleTheme()">

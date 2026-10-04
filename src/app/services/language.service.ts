@@ -8,9 +8,9 @@ export class LanguageService {
   private _lang: AppLang = 'en';
   readonly changed$ = new Subject<AppLang>();
   readonly languages: { code: AppLang; label: string }[] = [
+    { code: 'en', label: 'English' },
     { code: 'tr', label: 'Türkçe' },
     { code: 'de', label: 'Deutsch' },
-    { code: 'en', label: 'English' },
     { code: 'fa', label: 'فارسی' },
     { code: 'ja', label: '日本語' },
     { code: 'ru', label: 'Русский' },
