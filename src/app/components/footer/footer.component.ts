@@ -1,11 +1,13 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LanguageService } from 'src/app/services/language.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
-  selector: 'app-Footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.less']
+    selector: 'app-Footer',
+    templateUrl: './footer.component.html',
+    styleUrls: ['./footer.component.less'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class FooterComponent implements OnInit, OnDestroy {
   year = new Date().getFullYear();
