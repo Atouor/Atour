@@ -15,11 +15,38 @@
     </nav>
 
     <div class="header-actions">
-      <select class="lang-btn" [value]="i18n.lang" (change)="selectLang($event)" aria-label="Language">
-        @for (language of i18n.languages; track language.code) {
-          <option [value]="language.code" [selected]="language.code === i18n.lang">{{ language.label }}</option>
+      <div class="language-picker" (click)="$event.stopPropagation()">
+        <button
+          type="button"
+          class="lang-btn"
+          [class.open]="languageOpen"
+          [attr.aria-expanded]="languageOpen"
+          aria-haspopup="listbox"
+          aria-controls="language-menu"
+          (click)="toggleLanguageMenu()">
+          <span class="lang-globe" aria-hidden="true">◎</span>
+          <span>{{ activeLanguageLabel }}</span>
+          <svg class="lang-chevron" viewBox="0 0 12 12" aria-hidden="true">
+            <path d="m2.5 4.5 3.5 3 3.5-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        @if (languageOpen) {
+          <div id="language-menu" class="language-menu" role="listbox" [attr.aria-label]="i18n.t.lang.switchTo">
+            @for (language of i18n.languages; track language.code) {
+              <button
+                type="button"
+                class="language-option"
+                [class.active]="language.code === i18n.lang"
+                [attr.aria-selected]="language.code === i18n.lang"
+                role="option"
+                (click)="selectLang(language.code)">
+                <span>{{ language.label }}</span>
+                @if (language.code === i18n.lang) { <span class="language-check" aria-hidden="true">✓</span> }
+              </button>
+            }
+          </div>
         }
-      </select>
+      </div>
       <button class="theme-btn" (click)="toggleTheme()" [attr.aria-label]="theme.theme === 'dark' ? i18n.t.theme.light : i18n.t.theme.dark">
         <span class="theme-icon" [class.show]="theme.theme === 'dark'">☀️</span>
         <span class="theme-icon" [class.show]="theme.theme === 'light'">🌙</span>
@@ -40,11 +67,6 @@
           [style.animation-delay]="i * 0.06 + 's'"
         (click)="navigate(item.id, item.sectionId, $event)">{{ item.label }}</a>
       }
-      <select class="btn btn-outline lang-mobile" [value]="i18n.lang" (change)="selectLang($event)" aria-label="Language">
-        @for (language of i18n.languages; track language.code) {
-          <option [value]="language.code" [selected]="language.code === i18n.lang">{{ language.label }}</option>
-        }
-      </select>
       <button class="btn btn-outline theme-mobile" (click)="toggleTheme()">
         {{ theme.theme === 'dark' ? i18n.t.theme.light : i18n.t.theme.dark }}
       </button>

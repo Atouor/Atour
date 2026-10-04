@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   menuOption = 'Home';
   isScrolled = false;
   mobileOpen = false;
+  languageOpen = false;
   private sub?: Subscription;
 
   private readonly sectionMap: Record<string, string> = {
@@ -40,6 +41,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     ];
   }
 
+  get activeLanguageLabel(): string {
+    return this.i18n.languages.find(language => language.code === this.i18n.lang)?.label ?? 'English';
+  }
+
   ngOnInit(): void {
     this.syncSection();
     this.sub = this.i18n.changed$.subscribe(() => {
@@ -56,6 +61,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.syncSection();
   }
 
+  @HostListener('document:click')
+  closeLanguageMenu(): void {
+    this.languageOpen = false;
+  }
+
+  @HostListener('document:keydown.escape')
+  closeLanguageMenuOnEscape(): void {
+    this.languageOpen = false;
+  }
+
   navigate(id: string, sectionId: string, e: Event): void {
     e.preventDefault();
     e.stopPropagation();
@@ -67,13 +82,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   toggleMobile(): void {
+    this.languageOpen = false;
     this.mobileOpen = !this.mobileOpen;
     document.body.style.overflow = this.mobileOpen ? 'hidden' : '';
   }
 
   toggleTheme(): void { this.theme.toggle(); }
-  selectLang(event: Event): void {
-    this.i18n.set((event.target as HTMLSelectElement).value as AppLang);
+  toggleLanguageMenu(): void {
+    this.languageOpen = !this.languageOpen;
+  }
+
+  selectLang(lang: AppLang): void {
+    this.i18n.set(lang);
+    this.languageOpen = false;
   }
 
   private syncSection(): void {
