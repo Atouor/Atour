@@ -1,4 +1,6 @@
-export type AppLang = 'en' | 'fa';
+import { ADDITIONAL_TRANSLATIONS } from './translations.additional';
+
+export type AppLang = 'fa' | 'tr' | 'en' | 'de' | 'ja' | 'ru';
 
 export interface SiteTranslations {
   nav: { home: string; about: string; experience: string; skills: string; contact: string };
@@ -15,7 +17,7 @@ export interface SiteTranslations {
   experience: {
     tag: string; heading: string; headingAccent: string;
     jobs: { role: string; company: string; period: string; bullets: string[]; tags: string[] }[];
-    education: { degree: string; school: string; period: string; note: string };
+    education: { degree: string; school: string; note: string };
   };
   skills: {
     tag: string; heading: string; headingAccent: string;
@@ -32,7 +34,7 @@ export interface SiteTranslations {
   lang: { switchTo: string };
 }
 
-export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
+const BASE_TRANSLATIONS: Record<'en' | 'fa', SiteTranslations> = {
   en: {
     nav: { home: 'Home', about: 'About', experience: 'Experience', skills: 'Skills', contact: 'Contact' },
     hero: {
@@ -40,12 +42,12 @@ export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
       title: "Hi, I'm",
       titleName: 'Alireza',
       subtitle: 'Lead Front-End Developer · Team Lead',
-      desc: 'I design and deliver enterprise Angular applications at Ravan Ertebat Asr, leading Agile teams on the Kudos HR platform for 4+ years.',
+      desc: 'I design and deliver enterprise Angular applications at Ravan Ertebat Asr, leading Agile teams on the Kudos HR platform.',
       btnWork: 'View Experience →',
       btnContact: 'Contact Details',
       scroll: 'scroll',
       float1Title: 'Angular', float1Sub: 'Specialty',
-      float2Title: 'Agile Lead', float2Sub: '4+ Years',
+      float2Title: 'Agile Lead', float2Sub: 'Experience',
       stats: { years: 'Years', project: 'Main Project', skills: 'Core Skills' },
     },
     about: {
@@ -87,7 +89,6 @@ export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
       education: {
         degree: 'B.Sc. Computer Science',
         school: 'Mohaghegh Ardabili University',
-        period: '2019 — 2025',
         note: 'Algorithms, data structures, and computer science theory.',
       },
     },
@@ -102,7 +103,7 @@ export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
       other: ['Java / Android', 'REST APIs', 'Figma', 'Performance Tuning', 'Component Architecture', 'Dashboard Dev', 'Less', 'Python'],
       spoken: [
         { name: 'Persian', level: 'Native', flag: '🇮🇷' },
-        { name: 'Turkish', level: 'Native', flag: '🇹🇷' },
+        { name: 'Iranian Azerbaijani', level: 'Native', flag: '🇮🇷' },
         { name: 'English', level: 'Upper Intermediate', flag: '🇬🇧' },
       ],
     },
@@ -127,12 +128,12 @@ export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
       title: 'سلام، من',
       titleName: 'علیرضا',
       subtitle: 'توسعه‌دهنده ارشد فرانت‌اند · لید تیم',
-      desc: 'طراحی و توسعه اپلیکیشن‌های سازمانی با Angular در شرکت روان ارتباط عصر — بیش از ۴ سال لید تیم اجایل روی پلتفرم HR به نام Kudos.',
+      desc: 'طراحی و توسعه اپلیکیشن‌های سازمانی با Angular در شرکت روان ارتباط عصر و لید تیم اجایل روی پلتفرم HR به نام Kudos.',
       btnWork: 'مشاهده سوابق ←',
       btnContact: 'اطلاعات تماس',
       scroll: 'اسکرول',
       float1Title: 'Angular', float1Sub: 'تخصص اصلی',
-      float2Title: 'Agile Lead', float2Sub: '۴+ سال',
+      float2Title: 'Agile Lead', float2Sub: 'سابقه دقیق',
       stats: { years: 'سال تجربه', project: 'پروژه اصلی', skills: 'مهارت کلیدی' },
     },
     about: {
@@ -174,7 +175,6 @@ export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
       education: {
         degree: 'کارشناسی علوم کامپیوتر',
         school: 'دانشگاه محقق اردبیلی',
-        period: '۱۳۹۸ — ۱۴۰۴',
         note: 'پایه قوی در ریاضیات، الگوریتم‌ها و ساختمان داده.',
       },
     },
@@ -189,7 +189,7 @@ export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
       other: ['Java / Android', 'REST API', 'Figma', 'بهینه‌سازی عملکرد', 'معماری کامپوننت', 'توسعه داشبورد', 'Less', 'Python'],
       spoken: [
         { name: 'فارسی', level: 'زبان مادری', flag: '🇮🇷' },
-        { name: 'ترکی', level: 'زبان مادری', flag: '🇹🇷' },
+        { name: 'ترکی آذربایجانی ایران', level: 'زبان مادری', flag: '🇮🇷' },
         { name: 'انگلیسی', level: 'بالاتر از متوسط', flag: '🇬🇧' },
       ],
     },
@@ -207,4 +207,9 @@ export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
     theme: { light: '☀️ حالت روشن', dark: '🌙 حالت تیره' },
     lang: { switchTo: 'English' },
   },
+};
+
+export const TRANSLATIONS: Record<AppLang, SiteTranslations> = {
+  ...BASE_TRANSLATIONS,
+  ...ADDITIONAL_TRANSLATIONS,
 };

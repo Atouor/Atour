@@ -7,19 +7,24 @@ export class LanguageService {
   private readonly key = 'atour-lang';
   private _lang: AppLang = 'en';
   readonly changed$ = new Subject<AppLang>();
+  readonly languages: { code: AppLang; label: string }[] = [
+    { code: 'tr', label: 'Türkçe' },
+    { code: 'de', label: 'Deutsch' },
+    { code: 'en', label: 'English' },
+    { code: 'fa', label: 'فارسی' },
+    { code: 'ja', label: '日本語' },
+    { code: 'ru', label: 'Русский' },
+  ];
 
   init(): void {
-    const saved = localStorage.getItem(this.key) as AppLang | null;
-    this.set(saved || 'en', false);
+    const saved = localStorage.getItem(this.key);
+    const lang = this.languages.some(item => item.code === saved) ? saved as AppLang : 'en';
+    this.set(lang, false);
   }
 
   get lang(): AppLang { return this._lang; }
   get t(): SiteTranslations { return TRANSLATIONS[this._lang]; }
   get isRtl(): boolean { return this._lang === 'fa'; }
-
-  toggle(): void {
-    this.set(this._lang === 'en' ? 'fa' : 'en');
-  }
 
   set(lang: AppLang, persist = true): void {
     this._lang = lang;
