@@ -4,7 +4,7 @@ import { AppLang, SiteTranslations, TRANSLATIONS } from '../i18n/translations';
 
 @Injectable({ providedIn: 'root' })
 export class LanguageService {
-  private readonly key = 'atour-lang';
+  private readonly key = 'atour-lang-v2';
   private _lang: AppLang = 'en';
   readonly changed$ = new Subject<AppLang>();
   readonly languages: { code: AppLang; label: string }[] = [
