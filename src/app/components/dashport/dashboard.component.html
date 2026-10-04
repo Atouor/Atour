@@ -18,15 +18,15 @@
         </div>
         <div class="hero-stats anim-6">
           <div class="stat">
-            <strong>{{ stats[0].val }}</strong>
+            <strong>{{ experienceYearsLabel }}</strong>
             <span>{{ i18n.t.hero.stats.years }}</span>
           </div>
           <div class="stat">
-            <strong>{{ stats[1].val }}</strong>
+            <strong>{{ stats[0].val }}</strong>
             <span>{{ i18n.t.hero.stats.project }}</span>
           </div>
           <div class="stat">
-            <strong>{{ stats[2].val }}</strong>
+            <strong>{{ stats[1].val }}</strong>
             <span>{{ i18n.t.hero.stats.skills }}</span>
           </div>
         </div>
@@ -43,7 +43,7 @@
         </div>
         <div class="float-badge float-2 card">
           <span>🎯</span>
-          <div><b>{{ i18n.t.hero.float2Title }}</b><small>{{ i18n.t.hero.float2Sub }}</small></div>
+          <div><b>{{ i18n.t.hero.float2Title }}</b><small>{{ experienceDuration }}</small></div>
         </div>
       </div>
     </div>
@@ -106,25 +106,31 @@
       </div>
 
       <div class="timeline">
-        <article *ngFor="let job of i18n.t.experience.jobs; let i = index"
-                 class="timeline-item reveal" [style.transition-delay]="i * 0.1 + 's'">
-          <div class="tl-dot"></div>
-          <div class="tl-card card">
-            <div class="tl-top">
-              <div>
-                <h3>{{ job.role }}</h3>
-                <p class="tl-company">{{ job.company }}</p>
+        @for (job of i18n.t.experience.jobs; track job; let i = $index) {
+          <article
+            class="timeline-item reveal" [style.transition-delay]="i * 0.1 + 's'">
+            <div class="tl-dot"></div>
+            <div class="tl-card card">
+              <div class="tl-top">
+                <div>
+                  <h3>{{ job.role }}</h3>
+                  <p class="tl-company">{{ job.company }}</p>
+                </div>
+                <time>{{ job.period }} · {{ experienceDuration }}</time>
               </div>
-              <time>{{ job.period }}</time>
+              <ul class="selectable">
+                @for (b of job.bullets; track b) {
+                  <li>{{ b }}</li>
+                }
+              </ul>
+              <div class="tl-tags">
+                @for (t of job.tags; track t) {
+                  <span class="tag tag--accent">{{ t }}</span>
+                }
+              </div>
             </div>
-            <ul class="selectable">
-              <li *ngFor="let b of job.bullets">{{ b }}</li>
-            </ul>
-            <div class="tl-tags">
-              <span *ngFor="let t of job.tags" class="tag tag--accent">{{ t }}</span>
-            </div>
-          </div>
-        </article>
+          </article>
+        }
 
         <article class="timeline-item reveal">
           <div class="tl-dot"></div>
@@ -134,7 +140,6 @@
                 <h3>{{ i18n.t.experience.education.degree }}</h3>
                 <p class="tl-company">{{ i18n.t.experience.education.school }}</p>
               </div>
-              <time>{{ i18n.t.experience.education.period }}</time>
             </div>
             <p class="tl-note selectable">{{ i18n.t.experience.education.note }}</p>
           </div>
@@ -152,38 +157,46 @@
 
       <div class="skills-layout">
         <div class="skills-bars reveal">
-          <div *ngFor="let sk of skills; let i = index" class="skill-row" [style.transition-delay]="i * 0.08 + 's'">
-            <div class="skill-top">
-              <span>{{ sk.name }}</span>
-              <span class="skill-pct">{{ sk.level }}%</span>
+          @for (sk of skills; track sk; let i = $index) {
+            <div class="skill-row" [style.transition-delay]="i * 0.08 + 's'">
+              <div class="skill-top">
+                <span>{{ sk.name }}</span>
+                <span class="skill-pct">{{ sk.level }}%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" [style.width.%]="skillsAnimated ? sk.level : 0"></div>
+              </div>
             </div>
-            <div class="skill-track">
-              <div class="skill-fill" [style.width.%]="skillsAnimated ? sk.level : 0"></div>
-            </div>
-          </div>
+          }
         </div>
 
         <div class="skills-side reveal">
           <div class="skill-block card">
             <h4>{{ i18n.t.skills.agileTitle }}</h4>
             <div class="tag-cloud">
-              <span *ngFor="let s of i18n.t.skills.agile" class="tag">{{ s }}</span>
+              @for (s of i18n.t.skills.agile; track s) {
+                <span class="tag">{{ s }}</span>
+              }
             </div>
           </div>
           <div class="skill-block card">
             <h4>{{ i18n.t.skills.otherTitle }}</h4>
             <div class="tag-cloud">
-              <span *ngFor="let s of i18n.t.skills.other" class="tag">{{ s }}</span>
+              @for (s of i18n.t.skills.other; track s) {
+                <span class="tag">{{ s }}</span>
+              }
             </div>
           </div>
           <div class="lang-cards">
-            <div *ngFor="let l of i18n.t.skills.spoken" class="lang-card card">
-              <span class="lang-flag">{{ l.flag }}</span>
-              <div>
-                <b>{{ l.name }}</b>
-                <small>{{ l.level }}</small>
+            @for (l of i18n.t.skills.spoken; track l) {
+              <div class="lang-card card">
+                <span class="lang-flag">{{ l.flag }}</span>
+                <div>
+                  <b>{{ l.name }}</b>
+                  <small>{{ l.level }}</small>
+                </div>
               </div>
-            </div>
+            }
           </div>
         </div>
       </div>
@@ -205,7 +218,7 @@
           </a>
           <a href="tel:+989305271217" class="contact-row">
             <span class="cr-label">{{ i18n.t.contact.phone }}</span>
-            <span class="cr-val selectable">0930 527 1217</span>
+            <span class="cr-val phone-value selectable" dir="ltr">0930 527 1217</span>
           </a>
           <div class="contact-row">
             <span class="cr-label">{{ i18n.t.contact.location }}</span>

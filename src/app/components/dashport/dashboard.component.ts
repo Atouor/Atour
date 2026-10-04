@@ -1,14 +1,16 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LanguageService } from 'src/app/services/language.service';
-import { scrollToSection } from 'src/app/utils/scroll.util';
+import { LanguageService } from '../../services/language.service';
+import { scrollToSection } from '../../utils/scroll.util';
 
 interface Skill { name: string; level: number; }
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.less']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.less'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   skills: Skill[] = [
@@ -23,10 +25,46 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
 
   stats = [
-    { val: '4.5+', key: 'years' as const },
     { val: 'Kudos', key: 'project' as const },
     { val: '8+', key: 'skills' as const },
   ];
+
+  get experienceYearsLabel(): string {
+    const years = this.experienceParts.years;
+    return this.localizeNumber(`${years}+`);
+  }
+
+  get experienceDuration(): string {
+    const { years, months, days } = this.experienceParts;
+    const values = [years, months, days].map(value => this.localizeNumber(String(value)));
+    const units: Record<string, string[]> = {
+      fa: ['سال', 'ماه', 'روز'], tr: ['yıl', 'ay', 'gün'], de: ['Jahre', 'Monate', 'Tage'],
+      en: ['years', 'months', 'days'], ja: ['年', 'か月', '日'], ru: ['лет', 'мес.', 'дн.'],
+    };
+    const labels = units[this.i18n.lang];
+    return this.i18n.lang === 'ja'
+      ? values.map((value, i) => `${value}${labels[i]}`).join(' ')
+      : values.map((value, i) => `${value} ${labels[i]}`).join('، ');
+  }
+
+  private get experienceParts(): { years: number; months: number; days: number } {
+    const start = new Date(2021, 8, 23); // 1 Mehr 1400
+    const end = new Date();
+    let years = end.getFullYear() - start.getFullYear();
+    let months = end.getMonth() - start.getMonth();
+    let days = end.getDate() - start.getDate();
+    if (days < 0) {
+      months--;
+      days += new Date(end.getFullYear(), end.getMonth(), 0).getDate();
+    }
+    if (months < 0) { years--; months += 12; }
+    return { years, months, days };
+  }
+
+  private localizeNumber(value: string): string {
+    if (this.i18n.lang !== 'fa') return value;
+    return value.replace(/\d/g, digit => '۰۱۲۳۴۵۶۷۸۹'[Number(digit)]);
+  }
 
   skillsAnimated = false;
   private observer?: IntersectionObserver;
