@@ -16,7 +16,8 @@ button svg { width: 20px; height: 20px; }
 .skip { position: absolute; inset-inline-start: var(--gutter); top: .6rem; z-index: 1; background: var(--accent); color: var(--on-accent); padding: .6rem 1rem; transform: translateY(-200%); }
 .skip:focus { transform: translateY(0); }
 @media (max-width: 700px) {
-  .header-inner { grid-template-columns: 1fr auto; padding-block: .5rem; }
-  nav { grid-row: 2; grid-column: 1 / -1; justify-content: start; }
+  :host { position: relative; }
+  .header-inner { display: flex; justify-content: space-between; flex-wrap: wrap; padding-block: .5rem; }
+  nav { order: 1; width: 100%; justify-content: start; }
+  .settings { margin-inline-start: auto; max-width: 100%; }
 }
-@media (max-width: 700px) and (max-height: 500px) { :host { position: relative; } }
