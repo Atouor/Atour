@@ -2,12 +2,13 @@
   <section id="home" class="hero" aria-labelledby="hero-title">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">{{ copy.role }}</p>
-        <h1 id="hero-title">{{ copy.headline }}</h1>
+        <p class="eyebrow hero-role">{{ copy.kudosRole }}</p>
+        <h1 id="hero-title">{{ copy.name }}</h1>
+        <p class="hero-headline">{{ copy.headline }}</p>
         <p class="intro">{{ copy.description }}</p>
         <div class="actions">
-          <a class="button primary" href="#contact">{{ i18n.t.nav.contact }} <span aria-hidden="true">↗</span></a>
-          <a class="button" href="#experience">{{ i18n.t.nav.experience }} <span aria-hidden="true">↓</span></a>
+          <a class="button primary" href="#experience">{{ i18n.t.nav.experience }} <span aria-hidden="true">↓</span></a>
+          <a class="button" href="#contact">{{ i18n.t.nav.contact }} <span aria-hidden="true">↗</span></a>
         </div>
       </div>
       <app-background-animation></app-background-animation>
@@ -23,10 +24,21 @@
       <section id="about" class="section container about reveal" aria-labelledby="about-title">
         <img src="assets/images/alireza.webp" [alt]="copy.name" width="400" height="400" loading="lazy" decoding="async">
         <div>
-          <p class="eyebrow">{{ i18n.t.nav.about }}</p>
-          <h2 id="about-title">{{ copy.name }}</h2>
+          <h2 id="about-title">{{ i18n.t.nav.about }}</h2>
           <p>{{ copy.background }}</p>
         </div>
+      </section>
+
+      <section class="section container capabilities" aria-labelledby="capabilities-title">
+        <h2 class="section-heading reveal" id="capabilities-title">{{ copy.capabilitiesTitle }}</h2>
+        <ul class="capability-list">
+          @for (capability of copy.capabilities; track capability.title) {
+            <li class="reveal">
+              <h3>{{ capability.title }}</h3>
+              <p>{{ capability.description }}</p>
+            </li>
+          }
+        </ul>
       </section>
 
       <section id="experience" class="section container" aria-labelledby="experience-title">
