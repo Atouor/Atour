@@ -14,85 +14,95 @@
     </div>
   </section>
 
-  <section id="about" class="section container about" aria-labelledby="about-title">
-    <img src="assets/images/alireza.webp" [alt]="copy.name" width="400" height="400" loading="lazy" decoding="async">
-    <div>
-      <p class="eyebrow">{{ i18n.t.nav.about }}</p>
-      <h2 id="about-title">{{ copy.name }}</h2>
-      <p>{{ copy.background }}</p>
+  <div class="portfolio-details">
+    <div class="depth-backdrop" aria-hidden="true">
+      <div class="depth-grid"></div>
+      <div class="depth-orbits"></div>
     </div>
-  </section>
+    <div class="details-content">
+      <section id="about" class="section container about reveal" aria-labelledby="about-title">
+        <img src="assets/images/alireza.webp" [alt]="copy.name" width="400" height="400" loading="lazy" decoding="async">
+        <div>
+          <p class="eyebrow">{{ i18n.t.nav.about }}</p>
+          <h2 id="about-title">{{ copy.name }}</h2>
+          <p>{{ copy.background }}</p>
+        </div>
+      </section>
 
-  <section id="experience" class="section container" aria-labelledby="experience-title">
-    <h2 id="experience-title">{{ i18n.t.experience.heading }} {{ i18n.t.experience.headingAccent }}</h2>
-    <div class="experience-grid">
-      <div class="experience-stack">
-        <article class="panel">
-          <p class="eyebrow">{{ copy.current }}</p>
-          <h3>{{ copy.kudosRole }}</h3>
-        </article>
-        @for (job of i18n.t.experience.jobs; track job.company) {
-          <article class="panel job">
-            <p class="eyebrow">{{ job.company }}</p>
-            <h3>{{ job.role }}</h3>
-            <p class="period">{{ copy.angularPeriod }}</p>
-            <ul class="work-list">
-              @for (bullet of job.bullets; track bullet) { <li>{{ bullet }}</li> }
+      <section id="experience" class="section container" aria-labelledby="experience-title">
+        <h2 class="section-heading reveal" id="experience-title">{{ i18n.t.experience.heading }} {{ i18n.t.experience.headingAccent }}</h2>
+        <div class="experience-grid">
+          <div class="experience-stack">
+            <article class="panel featured reveal">
+              <p class="eyebrow">{{ copy.current }}</p>
+              <h3>{{ copy.kudosRole }}</h3>
+            </article>
+            @for (job of i18n.t.experience.jobs; track job.company) {
+              <article class="panel job reveal">
+                <p class="eyebrow">{{ job.company }}</p>
+                <h3>{{ job.role }}</h3>
+                <p class="period">{{ copy.angularPeriod }}</p>
+                <ul class="work-list">
+                  @for (bullet of job.bullets; track bullet) { <li>{{ bullet }}</li> }
+                </ul>
+              </article>
+            }
+          </div>
+          <div class="experience-stack">
+            <article class="panel reveal">
+              <p class="eyebrow">{{ copy.university }}</p>
+              <h3>{{ copy.masters }}</h3>
+              <p class="period">{{ copy.studyPeriod }}</p>
+            </article>
+            <article class="panel reveal">
+              <p class="eyebrow">{{ i18n.t.experience.education.school }}</p>
+              <h3>{{ i18n.t.experience.education.degree }}</h3>
+              <p>{{ i18n.t.experience.education.note }}</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="section container" aria-labelledby="skills-title">
+        <h2 class="section-heading reveal" id="skills-title">{{ i18n.t.nav.skills }}</h2>
+        <div class="skills-grid">
+          <article class="panel reveal">
+            <h3>{{ copy.engineering }}</h3>
+            <ul class="terms">
+              @for (skill of skills; track skill) { <li>{{ skill }}</li> }
+              @for (skill of i18n.t.skills.other; track skill) { <li>{{ skill }}</li> }
             </ul>
           </article>
-        }
-      </div>
-      <div class="experience-stack">
-        <article class="panel">
-          <p class="eyebrow">{{ copy.university }}</p>
-          <h3>{{ copy.masters }}</h3>
-          <p class="period">{{ copy.studyPeriod }}</p>
-        </article>
-        <article class="panel">
-          <p class="eyebrow">{{ i18n.t.experience.education.school }}</p>
-          <h3>{{ i18n.t.experience.education.degree }}</h3>
-          <p>{{ i18n.t.experience.education.note }}</p>
-        </article>
-      </div>
-    </div>
-  </section>
+          <article class="panel reveal">
+            <h3>{{ i18n.t.skills.agileTitle }}</h3>
+            <ul class="terms">
+              @for (skill of i18n.t.skills.agile; track skill) { <li>{{ skill }}</li> }
+            </ul>
+          </article>
+          <article class="panel spoken reveal">
+            <h3>{{ i18n.t.skills.langsTitle }}</h3>
+            <dl class="languages">
+              @for (language of i18n.t.skills.spoken; track language.name) {
+                <div><dt>{{ language.name }}</dt><dd>{{ language.level }}</dd></div>
+              }
+            </dl>
+          </article>
+        </div>
+      </section>
 
-  <section id="skills" class="section container" aria-labelledby="skills-title">
-    <h2 id="skills-title">{{ i18n.t.nav.skills }}</h2>
-    <div class="skills-grid">
-      <article class="panel">
-        <h3>{{ copy.engineering }}</h3>
-        <ul class="terms">
-          @for (skill of skills; track skill) { <li>{{ skill }}</li> }
-          @for (skill of i18n.t.skills.other; track skill) { <li>{{ skill }}</li> }
-        </ul>
-      </article>
-      <article class="panel">
-        <h3>{{ i18n.t.skills.agileTitle }}</h3>
-        <ul class="terms">
-          @for (skill of i18n.t.skills.agile; track skill) { <li>{{ skill }}</li> }
-        </ul>
-        <h3 class="language-title">{{ i18n.t.skills.langsTitle }}</h3>
-        <dl class="languages">
-          @for (language of i18n.t.skills.spoken; track language.name) {
-            <div><dt>{{ language.name }}</dt><dd>{{ language.level }}</dd></div>
-          }
-        </dl>
-      </article>
+      <section id="contact" class="section container" aria-labelledby="contact-title">
+        <div class="contact panel reveal">
+          <div>
+            <h2 id="contact-title">{{ i18n.t.contact.heading }} {{ i18n.t.contact.headingAccent }}</h2>
+            <p>{{ i18n.t.contact.desc }}</p>
+          </div>
+          <address>
+            <a href="mailto:ar.h.a&#64;outlook.com" dir="ltr">ar.h.a&#64;outlook.com</a>
+            <a href="tel:+989305271217" dir="ltr">0930 527 1217</a>
+            <span>{{ i18n.t.contact.locationVal }}</span>
+          </address>
+        </div>
+      </section>
     </div>
-  </section>
-
-  <section id="contact" class="section container" aria-labelledby="contact-title">
-    <div class="contact panel">
-      <div>
-        <h2 id="contact-title">{{ i18n.t.contact.heading }} {{ i18n.t.contact.headingAccent }}</h2>
-        <p>{{ i18n.t.contact.desc }}</p>
-      </div>
-      <address>
-        <a href="mailto:ar.h.a&#64;outlook.com" dir="ltr">ar.h.a&#64;outlook.com</a>
-        <a href="tel:+989305271217" dir="ltr">0930 527 1217</a>
-        <span>{{ i18n.t.contact.locationVal }}</span>
-      </address>
-    </div>
-  </section>
+  </div>
 </main>

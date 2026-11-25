@@ -1,28 +1,31 @@
 :root {
   color-scheme: dark;
-  --page: #151210;
-  --surface: #1e1916;
-  --ink: #fff0e5;
-  --muted: #ccbbb0;
-  --line: #56453b;
-  --accent: #ffb078;
-  --on-accent: #28150c;
+  --page: #100c10;
+  --surface: #20151d;
+  --ink: #fff4f8;
+  --muted: #d6beca;
+  --line: #604252;
+  --accent: #ff9ab7;
+  --on-accent: #300417;
   --gutter: clamp(1rem, 5vw, 4rem);
   --max-width: 1440px;
-  --font-main: 'Inter', system-ui, sans-serif;
-  --font-label: 'JetBrains Mono', monospace;
+  --burgundy: #b21f4b;
+  --on-burgundy: #fff4f8;
+  --font-main: 'Manrope', system-ui, sans-serif;
+  --font-label: var(--font-main);
 }
 :root[data-theme='light'] {
   color-scheme: light;
-  --page: #f9f1e9;
-  --surface: #fff9f4;
-  --ink: #241814;
-  --muted: #66534a;
-  --line: #a89184;
-  --accent: #8a361c;
-  --on-accent: #fff8f2;
+  --page: #fcf4f7;
+  --surface: #fffafd;
+  --ink: #28121f;
+  --muted: #6c4559;
+  --line: #bd96a8;
+  --accent: #8a1538;
+  --burgundy: #8a1538;
+  --on-accent: #fff4f8;
 }
-:root[lang='fa'] { --font-main: 'Vazirmatn', system-ui, sans-serif; --font-label: var(--font-main); }
+:root[lang='fa'] { --font-main: 'Estedad', system-ui, sans-serif; }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-block-start: 7rem; }
 body { margin: 0; background: var(--page); color: var(--ink); overflow-wrap: anywhere; font: 1rem/1.6 var(--font-main); }
