@@ -33,8 +33,8 @@ export function createParticleScene(
     uniforms: {
       time: { value: 0 },
       density: { value: 1 },
-      nearColor: { value: new Color('#ffa1bb') },
-      farColor: { value: new Color('#b21f4b') },
+      nearColor: { value: new Color('#a72e4c') },
+      farColor: { value: new Color('#68122a') },
     },
     vertexShader: `
       uniform float time;

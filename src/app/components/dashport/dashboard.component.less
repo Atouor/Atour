@@ -78,7 +78,7 @@ address span { color: var(--muted); }
 .depth-grid::before, .depth-orbits::before {
   content: '';
   position: absolute;
-  color: color-mix(in srgb, var(--accent) 42%, transparent);
+  color: color-mix(in srgb, var(--burgundy) 75%, transparent);
 }
 .depth-grid::before {
   inset: -45% -65% -35%;
@@ -113,7 +113,7 @@ address span { color: var(--muted); }
 }
 .experience-grid { gap: clamp(1rem, 2vw, 1.6rem); }
 .skills-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 1rem; }
-.spoken { grid-column: 1 / -1; }
+.spoken, .vibe-skills { grid-column: 1 / -1; }
 .terms { display: flex; flex-wrap: wrap; align-items: flex-start; gap: .55rem; list-style: none; margin: .9rem 0 0; padding: 0; color: var(--muted); }
 .terms li {
   padding: .35rem .7rem;
@@ -148,3 +148,8 @@ address a { color: var(--accent); }
 @keyframes reveal-in { from { opacity: .82; transform: translateY(22px); } to { opacity: 1; transform: none; } }
 @keyframes change-depth { from { transform: translateY(13%) rotateZ(-4deg); } to { transform: translateY(-20%) rotateZ(9deg); } }
 @keyframes turn-orbits { from { transform: translateX(-12%) rotateZ(-14deg); } to { transform: translateX(14%) rotateZ(22deg); } }
+
+.career-history { margin-top: 1.4rem; border-top: 1px solid var(--line); padding-top: 1.1rem; }
+.career-history h4 { margin: 0 0 .25rem; font-size: 1rem; }
+
+.development-focus { margin-top: .75rem; color: var(--ink); font-weight: 650; }

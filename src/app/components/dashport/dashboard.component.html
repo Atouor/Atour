@@ -33,18 +33,19 @@
         <h2 class="section-heading reveal" id="experience-title">{{ i18n.t.experience.heading }} {{ i18n.t.experience.headingAccent }}</h2>
         <div class="experience-grid">
           <div class="experience-stack">
-            <article class="panel featured reveal">
-              <p class="eyebrow">{{ copy.current }}</p>
-              <h3>{{ copy.kudosRole }}</h3>
-            </article>
             @for (job of i18n.t.experience.jobs; track job.company) {
-              <article class="panel job reveal">
+              <article class="panel featured reveal">
                 <p class="eyebrow">{{ job.company }}</p>
-                <h3>{{ job.role }}</h3>
-                <p class="period">{{ copy.angularPeriod }}</p>
+                <h3>{{ copy.kudosRole }}</h3>
+                <p class="period">{{ copy.employmentPeriod }}</p>
+                <p class="development-focus">{{ copy.role }}</p>
                 <ul class="work-list">
                   @for (bullet of job.bullets; track bullet) { <li>{{ bullet }}</li> }
                 </ul>
+                <div class="career-history">
+                  <h4>{{ copy.previousFocus }}</h4>
+                  <p class="period"><bdi>{{ copy.angularPeriod }}</bdi></p>
+                </div>
               </article>
             }
           </div>
@@ -66,6 +67,12 @@
       <section id="skills" class="section container" aria-labelledby="skills-title">
         <h2 class="section-heading reveal" id="skills-title">{{ i18n.t.nav.skills }}</h2>
         <div class="skills-grid">
+          <article class="panel featured vibe-skills reveal">
+            <h3>{{ copy.role }}</h3>
+            <ul class="terms">
+              @for (skill of copy.vibeSkills; track skill) { <li>{{ skill }}</li> }
+            </ul>
+          </article>
           <article class="panel reveal">
             <h3>{{ copy.engineering }}</h3>
             <ul class="terms">
