@@ -1,232 +1,92 @@
-<main class="site">
-
-  <section id="home" class="hero">
+<main id="main-content" tabindex="-1">
+  <section id="home" class="hero" aria-labelledby="hero-title">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <h1 class="hero-title anim-2 selectable">
-          {{ i18n.t.hero.title }} <span class="accent-word">{{ i18n.t.hero.titleName }}</span>
-        </h1>
-        <p class="hero-sub anim-3">{{ i18n.t.hero.subtitle }}</p>
-        <p class="hero-desc anim-4 selectable">{{ i18n.t.hero.desc }}</p>
-        <div class="hero-btns anim-5">
-          <a href="#experience" class="btn btn-primary" (click)="scrollTo('experience', $event)">
-            {{ i18n.t.hero.btnWork }}
-          </a>
-          <a href="#contact" class="btn btn-outline" (click)="scrollTo('contact', $event)">
-            {{ i18n.t.hero.btnContact }}
-          </a>
-        </div>
-        <div class="hero-stats anim-6">
-          <div class="stat">
-            <strong>{{ experienceYearsLabel }}</strong>
-            <span>{{ i18n.t.hero.stats.years }}</span>
-          </div>
-          <div class="stat">
-            <strong>{{ stats[0].val }}</strong>
-            <span>{{ i18n.t.hero.stats.project }}</span>
-          </div>
-          <div class="stat">
-            <strong>{{ stats[1].val }}</strong>
-            <span>{{ i18n.t.hero.stats.skills }}</span>
-          </div>
+        <p class="eyebrow">{{ copy.role }}</p>
+        <h1 id="hero-title">{{ copy.headline }}</h1>
+        <p class="intro">{{ copy.description }}</p>
+        <div class="actions">
+          <a class="button primary" href="#contact">{{ i18n.t.nav.contact }} <span aria-hidden="true">↗</span></a>
+          <a class="button" href="#experience">{{ i18n.t.nav.experience }} <span aria-hidden="true">↓</span></a>
         </div>
       </div>
-
-      <div class="hero-visual anim-7">
-        <div class="photo-wrap">
-          <div class="photo-ring"></div>
-          <img src="assets/images/napx10.jpg" alt="Alireza Hossein Aghayee" class="photo">
-        </div>
-        <div class="float-badge float-1 card">
-          <span>⚡</span>
-          <div><b>{{ i18n.t.hero.float1Title }}</b><small>{{ i18n.t.hero.float1Sub }}</small></div>
-        </div>
-        <div class="float-badge float-2 card">
-          <span>🎯</span>
-          <div><b>{{ i18n.t.hero.float2Title }}</b><small>{{ experienceDuration }}</small></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="scroll-cue">
-      <span>{{ i18n.t.hero.scroll }}</span>
-      <div class="scroll-bar"></div>
+      <app-background-animation></app-background-animation>
     </div>
   </section>
 
-  <section id="about" class="band about-band">
-    <div class="container">
-      <div class="band-head reveal">
-        <span class="section-tag">{{ i18n.t.about.tag }}</span>
-        <h2 class="section-heading">{{ i18n.t.about.heading }} <span class="accent-word">{{ i18n.t.about.headingAccent }}</span></h2>
-        <p class="section-desc">{{ i18n.t.about.desc }}</p>
-      </div>
-      <div class="about-cards">
-        <div class="about-card card reveal">
-          <div class="card-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.75"/>
-              <path d="M5 20c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3>{{ i18n.t.about.cards.profile.title }}</h3>
-          <p class="selectable">{{ i18n.t.about.cards.profile.text }}</p>
-        </div>
-        <div class="about-card card reveal" style="transition-delay:.1s">
-          <div class="card-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.75"/>
-              <path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-              <path d="M3 12h18" stroke="currentColor" stroke-width="1.75"/>
-            </svg>
-          </div>
-          <h3>{{ i18n.t.about.cards.role.title }}</h3>
-          <p class="selectable">{{ i18n.t.about.cards.role.text }}</p>
-        </div>
-        <div class="about-card card reveal" style="transition-delay:.2s">
-          <div class="card-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M8 6L3 12l5 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M16 6l5 6-5 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M13.5 4.5l-3 15" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3>{{ i18n.t.about.cards.focus.title }}</h3>
-          <p class="selectable">{{ i18n.t.about.cards.focus.text }}</p>
-        </div>
-      </div>
+  <section id="about" class="section container about" aria-labelledby="about-title">
+    <img src="assets/images/alireza.webp" [alt]="copy.name" width="400" height="400" loading="lazy" decoding="async">
+    <div>
+      <p class="eyebrow">{{ i18n.t.nav.about }}</p>
+      <h2 id="about-title">{{ copy.name }}</h2>
+      <p>{{ copy.background }}</p>
     </div>
   </section>
 
-  <section id="experience" class="section experience-sec">
-    <div class="container">
-      <div class="band-head reveal">
-        <span class="section-tag">{{ i18n.t.experience.tag }}</span>
-        <h2 class="section-heading">{{ i18n.t.experience.heading }} <span class="accent-word">{{ i18n.t.experience.headingAccent }}</span></h2>
-      </div>
-
-      <div class="timeline">
-        @for (job of i18n.t.experience.jobs; track job; let i = $index) {
-          <article
-            class="timeline-item reveal" [style.transition-delay]="i * 0.1 + 's'">
-            <div class="tl-dot"></div>
-            <div class="tl-card card">
-              <div class="tl-top">
-                <div>
-                  <h3>{{ job.role }}</h3>
-                  <p class="tl-company">{{ job.company }}</p>
-                </div>
-                <time>{{ job.period }} · {{ experienceDuration }}</time>
-              </div>
-              <ul class="selectable">
-                @for (b of job.bullets; track b) {
-                  <li>{{ b }}</li>
-                }
-              </ul>
-              <div class="tl-tags">
-                @for (t of job.tags; track t) {
-                  <span class="tag tag--accent">{{ t }}</span>
-                }
-              </div>
-            </div>
-          </article>
-        }
-
-        <article class="timeline-item reveal">
-          <div class="tl-dot"></div>
-          <div class="tl-card card">
-            <div class="tl-top">
-              <div>
-                <h3>{{ i18n.t.experience.education.degree }}</h3>
-                <p class="tl-company">{{ i18n.t.experience.education.school }}</p>
-              </div>
-            </div>
-            <p class="tl-note selectable">{{ i18n.t.experience.education.note }}</p>
-          </div>
+  <section id="experience" class="section container" aria-labelledby="experience-title">
+    <h2 id="experience-title">{{ i18n.t.experience.heading }} {{ i18n.t.experience.headingAccent }}</h2>
+    <div class="experience-grid">
+      @for (job of i18n.t.experience.jobs; track job.company) {
+        <article class="panel job">
+          <p class="eyebrow">{{ job.company }}</p>
+          <h3>{{ job.role }}</h3>
+          <p class="period">{{ copy.angularPeriod }}</p>
+          <ul class="work-list">
+            @for (bullet of job.bullets; track bullet) { <li>{{ bullet }}</li> }
+          </ul>
+        </article>
+      }
+      <div class="education">
+        <article class="panel">
+          <p class="eyebrow">{{ copy.university }}</p>
+          <h3>{{ copy.masters }}</h3>
+          <p class="period">{{ copy.studyPeriod }}</p>
+        </article>
+        <article class="panel">
+          <p class="eyebrow">{{ i18n.t.experience.education.school }}</p>
+          <h3>{{ i18n.t.experience.education.degree }}</h3>
+          <p>{{ i18n.t.experience.education.note }}</p>
         </article>
       </div>
     </div>
   </section>
 
-  <section id="skills" class="band skills-band">
-    <div class="container">
-      <div class="band-head reveal">
-        <span class="section-tag">{{ i18n.t.skills.tag }}</span>
-        <h2 class="section-heading">{{ i18n.t.skills.heading }} <span class="accent-word">{{ i18n.t.skills.headingAccent }}</span></h2>
-      </div>
-
-      <div class="skills-layout">
-        <div class="skills-bars reveal">
-          @for (sk of skills; track sk; let i = $index) {
-            <div class="skill-row" [style.transition-delay]="i * 0.08 + 's'">
-              <div class="skill-top">
-                <span>{{ sk.name }}</span>
-                <span class="skill-pct">{{ sk.level }}%</span>
-              </div>
-              <div class="skill-track">
-                <div class="skill-fill" [style.width.%]="skillsAnimated ? sk.level : 0"></div>
-              </div>
-            </div>
+  <section id="skills" class="section container" aria-labelledby="skills-title">
+    <h2 id="skills-title">{{ i18n.t.nav.skills }}</h2>
+    <div class="skills-grid">
+      <article class="panel">
+        <h3>{{ copy.engineering }}</h3>
+        <ul class="terms">
+          @for (skill of skills; track skill) { <li>{{ skill }}</li> }
+          @for (skill of i18n.t.skills.other; track skill) { <li>{{ skill }}</li> }
+        </ul>
+      </article>
+      <article class="panel">
+        <h3>{{ i18n.t.skills.agileTitle }}</h3>
+        <ul class="terms">
+          @for (skill of i18n.t.skills.agile; track skill) { <li>{{ skill }}</li> }
+        </ul>
+        <h3 class="language-title">{{ i18n.t.skills.langsTitle }}</h3>
+        <dl class="languages">
+          @for (language of i18n.t.skills.spoken; track language.name) {
+            <div><dt>{{ language.name }}</dt><dd>{{ language.level }}</dd></div>
           }
-        </div>
-
-        <div class="skills-side reveal">
-          <div class="skill-block card">
-            <h4>{{ i18n.t.skills.agileTitle }}</h4>
-            <div class="tag-cloud">
-              @for (s of i18n.t.skills.agile; track s) {
-                <span class="tag">{{ s }}</span>
-              }
-            </div>
-          </div>
-          <div class="skill-block card">
-            <h4>{{ i18n.t.skills.otherTitle }}</h4>
-            <div class="tag-cloud">
-              @for (s of i18n.t.skills.other; track s) {
-                <span class="tag">{{ s }}</span>
-              }
-            </div>
-          </div>
-          <div class="lang-cards">
-            @for (l of i18n.t.skills.spoken; track l) {
-              <div class="lang-card card">
-                <span class="lang-flag">{{ l.flag }}</span>
-                <div>
-                  <b>{{ l.name }}</b>
-                  <small>{{ l.level }}</small>
-                </div>
-              </div>
-            }
-          </div>
-        </div>
-      </div>
+        </dl>
+      </article>
     </div>
   </section>
 
-  <section id="contact" class="contact-sec">
-    <div class="container">
-      <div class="contact-wrap card reveal">
-        <div class="contact-left">
-          <span class="section-tag">{{ i18n.t.contact.tag }}</span>
-          <h2 class="section-heading">{{ i18n.t.contact.heading }} <span class="accent-word">{{ i18n.t.contact.headingAccent }}</span></h2>
-          <p class="section-desc">{{ i18n.t.contact.desc }}</p>
-        </div>
-        <div class="contact-right">
-          <a href="mailto:ar.h.a&#64;outlook.com" class="contact-row">
-            <span class="cr-label">{{ i18n.t.contact.email }}</span>
-            <span class="cr-val selectable">ar.h.a&#64;outlook.com</span>
-          </a>
-          <a href="tel:+989305271217" class="contact-row">
-            <span class="cr-label">{{ i18n.t.contact.phone }}</span>
-            <span class="cr-val phone-value selectable" dir="ltr">0930 527 1217</span>
-          </a>
-          <div class="contact-row">
-            <span class="cr-label">{{ i18n.t.contact.location }}</span>
-            <span class="cr-val selectable">{{ i18n.t.contact.locationVal }}</span>
-          </div>
-        </div>
+  <section id="contact" class="section container" aria-labelledby="contact-title">
+    <div class="contact panel">
+      <div>
+        <h2 id="contact-title">{{ i18n.t.contact.heading }} {{ i18n.t.contact.headingAccent }}</h2>
+        <p>{{ i18n.t.contact.desc }}</p>
       </div>
+      <address>
+        <a href="mailto:ar.h.a&#64;outlook.com" dir="ltr">ar.h.a&#64;outlook.com</a>
+        <a href="tel:+989305271217" dir="ltr">0930 527 1217</a>
+        <span>{{ i18n.t.contact.locationVal }}</span>
+      </address>
     </div>
   </section>
-
 </main>

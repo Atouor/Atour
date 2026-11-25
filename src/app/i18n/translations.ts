@@ -23,7 +23,7 @@ export interface SiteTranslations {
     tag: string; heading: string; headingAccent: string;
     agileTitle: string; otherTitle: string; langsTitle: string;
     agile: string[]; other: string[];
-    spoken: { name: string; level: string; flag: string }[];
+    spoken: { name: string; level: string }[];
   };
   contact: {
     tag: string; heading: string; headingAccent: string; desc: string;
@@ -102,9 +102,9 @@ const BASE_TRANSLATIONS: Record<'en' | 'fa', SiteTranslations> = {
       agile: ['Scrum', 'Sprint Planning', 'Backlog Grooming', 'Code Review', 'Team Leadership', 'Mentoring', 'Cross-team Collaboration'],
       other: ['Java / Android', 'REST APIs', 'Figma', 'Performance Tuning', 'Component Architecture', 'Dashboard Dev', 'Less', 'Python'],
       spoken: [
-        { name: 'Persian', level: 'Native', flag: '🇮🇷' },
-        { name: 'Iranian Azerbaijani', level: 'Native', flag: '🇮🇷' },
-        { name: 'English', level: 'Upper Intermediate', flag: '🇬🇧' },
+        { name: 'Persian', level: 'Native' },
+        { name: 'Iranian Azerbaijani', level: 'Native' },
+        { name: 'English', level: 'Upper Intermediate' },
       ],
     },
     contact: {
@@ -118,7 +118,7 @@ const BASE_TRANSLATIONS: Record<'en' | 'fa', SiteTranslations> = {
       tagline: 'Alireza Hossein Aghayee — Front-End Developer',
       copyright: 'Alireza Hossein Aghayee · Built with Angular',
     },
-    theme: { light: '☀️ Light Mode', dark: '🌙 Dark Mode' },
+    theme: { light: 'Light Mode', dark: 'Dark Mode' },
     lang: { switchTo: 'فارسی' },
   },
   fa: {
@@ -188,9 +188,9 @@ const BASE_TRANSLATIONS: Record<'en' | 'fa', SiteTranslations> = {
       agile: ['اسکرام', 'برنامه‌ریزی اسپرینت', 'گروومینگ بک‌لاگ', 'بازبینی کد', 'رهبری تیم', 'منتورینگ', 'همکاری بین‌تیمی'],
       other: ['Java / Android', 'REST API', 'Figma', 'بهینه‌سازی عملکرد', 'معماری کامپوننت', 'توسعه داشبورد', 'Less', 'Python'],
       spoken: [
-        { name: 'فارسی', level: 'زبان مادری', flag: '🇮🇷' },
-        { name: 'ترکی آذربایجانی ایران', level: 'زبان مادری', flag: '🇮🇷' },
-        { name: 'انگلیسی', level: 'بالاتر از متوسط', flag: '🇬🇧' },
+        { name: 'فارسی', level: 'زبان مادری' },
+        { name: 'ترکی آذربایجانی ایران', level: 'زبان مادری' },
+        { name: 'انگلیسی', level: 'بالاتر از متوسط' },
       ],
     },
     contact: {
@@ -204,7 +204,7 @@ const BASE_TRANSLATIONS: Record<'en' | 'fa', SiteTranslations> = {
       tagline: 'علیرضا حسین آقایی — توسعه‌دهنده فرانت‌اند',
       copyright: 'علیرضا حسین آقایی · ساخته‌شده با Angular',
     },
-    theme: { light: '☀️ حالت روشن', dark: '🌙 حالت تیره' },
+    theme: { light: 'حالت روشن', dark: 'حالت تیره' },
     lang: { switchTo: 'English' },
   },
 };

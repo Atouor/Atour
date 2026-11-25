@@ -1,74 +1,26 @@
-<header class="header" [class.scrolled]="isScrolled">
+<a class="skip" href="#main-content">{{ skipLabel }}</a>
+<header>
   <div class="container header-inner">
-    <a href="#home" class="logo" (click)="navigate('Home', 'home', $event)">
-      <img src="assets/images/atour-logo.svg" alt="" class="logo-mark" width="36" height="36">
-      <span class="logo-name">Atour</span>
-    </a>
-
-    <nav class="nav-desktop">
-      @for (item of navItems; track item) {
-        <a
-          [href]="item.href"
-          [class.active]="menuOption === item.id"
-        (click)="navigate(item.id, item.sectionId, $event)">{{ item.label }}</a>
+    <a class="brand" href="#home">Atour<span aria-hidden="true">.</span></a>
+    <nav>
+      @for (section of sections; track section) {
+        <a [href]="'#' + section">{{ i18n.t.nav[section] }}</a>
       }
     </nav>
-
-    <div class="header-actions">
-      <div class="language-picker" (click)="$event.stopPropagation()">
-        <button
-          type="button"
-          class="lang-btn"
-          [class.open]="languageOpen"
-          [attr.aria-expanded]="languageOpen"
-          aria-haspopup="listbox"
-          aria-controls="language-menu"
-          (click)="toggleLanguageMenu()">
-          <span class="lang-globe" aria-hidden="true">◎</span>
-          <span>{{ activeLanguageLabel }}</span>
-          <svg class="lang-chevron" viewBox="0 0 12 12" aria-hidden="true">
-            <path d="m2.5 4.5 3.5 3 3.5-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        @if (languageOpen) {
-          <div id="language-menu" class="language-menu" role="listbox" [attr.aria-label]="i18n.t.lang.switchTo">
-            @for (language of i18n.languages; track language.code) {
-              <button
-                type="button"
-                class="language-option"
-                [class.active]="language.code === i18n.lang"
-                [attr.aria-selected]="language.code === i18n.lang"
-                role="option"
-                (click)="selectLang(language.code)">
-                <span>{{ language.label }}</span>
-                @if (language.code === i18n.lang) { <span class="language-check" aria-hidden="true">✓</span> }
-              </button>
-            }
-          </div>
+    <div class="settings">
+      <select [attr.aria-label]="i18n.t.lang.switchTo" [value]="i18n.lang" (change)="setLanguage($event)">
+        @for (language of i18n.languages; track language.code) {
+          <option [value]="language.code" [selected]="language.code === i18n.lang">{{ language.label }}</option>
         }
-      </div>
-      <button class="theme-btn" (click)="toggleTheme()" [attr.aria-label]="theme.theme === 'dark' ? i18n.t.theme.light : i18n.t.theme.dark">
-        <span class="theme-icon" [class.show]="theme.theme === 'dark'">☀️</span>
-        <span class="theme-icon" [class.show]="theme.theme === 'light'">🌙</span>
-      </button>
-      <a href="#contact" class="btn btn-primary header-cta" (click)="navigate('Contact', 'contact', $event)">{{ i18n.t.nav.contact }}</a>
-      <button class="menu-btn" [class.open]="mobileOpen" (click)="toggleMobile()" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-
-  <div class="nav-mobile" [class.open]="mobileOpen">
-    <div class="nav-mobile-bg" (click)="toggleMobile()"></div>
-    <div class="nav-mobile-panel">
-      @for (item of navItems; track item; let i = $index) {
-        <a
-          [href]="item.href"
-          [style.animation-delay]="i * 0.06 + 's'"
-        (click)="navigate(item.id, item.sectionId, $event)">{{ item.label }}</a>
-      }
-      <button class="btn btn-outline theme-mobile" (click)="toggleTheme()">
-        {{ theme.theme === 'dark' ? i18n.t.theme.light : i18n.t.theme.dark }}
+      </select>
+      <button type="button" [attr.aria-label]="theme.theme === 'dark' ? i18n.t.theme.light : i18n.t.theme.dark" (click)="theme.toggle()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          @if (theme.theme === 'dark') {
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19m0-14-1.5 1.5m-11 11L5 19"/>
+          } @else {
+            <path d="M20 15.2A8.6 8.6 0 0 1 8.8 4 8.6 8.6 0 1 0 20 15.2Z"/>
+          }
+        </svg>
       </button>
     </div>
   </div>

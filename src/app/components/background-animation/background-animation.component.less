@@ -1,13 +1,54 @@
-:host {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
+:host { display: block; min-width: 0; }
+.stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
   overflow: hidden;
+  aspect-ratio: 1.08;
+  background:
+    radial-gradient(ellipse at 50% 52%, #50251d 0, transparent 64%),
+    radial-gradient(circle, #5b4a44 0.7px, transparent 0.9px) 50% 50% / 20px 20px,
+    #160f0e;
+  color: #f8eee7;
+  border: 1px solid #48332c;
+  border-radius: 16px;
 }
-
-.bg-canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
+.stage::before, .stage::after {
+  content: '';
+  position: absolute;
+  width: 67%;
+  aspect-ratio: 1;
+  border: 1px solid #f9ab782a;
+  border-radius: 50%;
+  pointer-events: none;
 }
+.stage::after { width: 82%; border-style: dashed; }
+canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
+.ready canvas { opacity: 1; }
+.fallback {
+  width: 61%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #ffd3ab 0.7px, transparent 1.3px) 0 0 / 6px 6px,
+    radial-gradient(circle at 40% 32%, #d28155, #59291c 62%, #230f0b 82%);
+  box-shadow: inset 0 0 28px #361a15, 0 0 80px #a24c3b48;
+}
+.ready .fallback { visibility: hidden; }
+.motion {
+  z-index: 1;
+  position: absolute;
+  inset-inline-end: 12px;
+  bottom: 12px;
+  inline-size: 44px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #a18b80;
+  border-radius: 50%;
+  background: #211613;
+  color: inherit;
+}
+.motion:hover { background: #513125; }
+.motion svg { width: 20px; height: 20px; }
