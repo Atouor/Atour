@@ -26,17 +26,23 @@
   <section id="experience" class="section container" aria-labelledby="experience-title">
     <h2 id="experience-title">{{ i18n.t.experience.heading }} {{ i18n.t.experience.headingAccent }}</h2>
     <div class="experience-grid">
-      @for (job of i18n.t.experience.jobs; track job.company) {
-        <article class="panel job">
-          <p class="eyebrow">{{ job.company }}</p>
-          <h3>{{ job.role }}</h3>
-          <p class="period">{{ copy.angularPeriod }}</p>
-          <ul class="work-list">
-            @for (bullet of job.bullets; track bullet) { <li>{{ bullet }}</li> }
-          </ul>
+      <div class="experience-stack">
+        <article class="panel">
+          <p class="eyebrow">{{ copy.current }}</p>
+          <h3>{{ copy.kudosRole }}</h3>
         </article>
-      }
-      <div class="education">
+        @for (job of i18n.t.experience.jobs; track job.company) {
+          <article class="panel job">
+            <p class="eyebrow">{{ job.company }}</p>
+            <h3>{{ job.role }}</h3>
+            <p class="period">{{ copy.angularPeriod }}</p>
+            <ul class="work-list">
+              @for (bullet of job.bullets; track bullet) { <li>{{ bullet }}</li> }
+            </ul>
+          </article>
+        }
+      </div>
+      <div class="experience-stack">
         <article class="panel">
           <p class="eyebrow">{{ copy.university }}</p>
           <h3>{{ copy.masters }}</h3>

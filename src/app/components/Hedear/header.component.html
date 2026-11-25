@@ -8,11 +8,35 @@
       }
     </nav>
     <div class="settings">
-      <select [attr.aria-label]="i18n.t.lang.switchTo" [value]="i18n.lang" (change)="setLanguage($event)">
-        @for (language of i18n.languages; track language.code) {
-          <option [value]="language.code" [selected]="language.code === i18n.lang">{{ language.label }}</option>
+      <div class="language-picker" #picker>
+        <button type="button" class="language-trigger" #trigger role="combobox" aria-haspopup="listbox"
+          aria-labelledby="language-label language-value"
+          [attr.aria-expanded]="languageOpen" [attr.aria-controls]="languageOpen ? 'language-options' : null"
+          [attr.aria-activedescendant]="languageOpen ? 'language-' + i18n.languages[activeIndex].code : null"
+          (click)="trigger.focus(); toggleLanguage()" (keydown)="onLanguageKey($event)" (blur)="languageOpen = false">
+          <span id="language-label" class="visually-hidden">{{ i18n.t.lang.switchTo }}</span>
+          <span id="language-value" [attr.lang]="i18n.lang">{{ selectedLanguage.label }}</span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="m4 6 4 4 4-4"/>
+          </svg>
+        </button>
+        @if (languageOpen) {
+          <ul class="language-options" id="language-options" role="listbox" aria-labelledby="language-label">
+            @for (language of i18n.languages; track language.code; let index = $index) {
+              <li role="option" [id]="'language-' + language.code" [attr.lang]="language.code"
+                [attr.aria-selected]="language.code === i18n.lang" [class.highlighted]="activeIndex === index"
+                (mousedown)="$event.preventDefault()" (click)="chooseLanguage(language.code)">
+                <bdi>{{ language.label }}</bdi>
+                @if (language.code === i18n.lang) {
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <path d="m3 8 3 3 7-7"/>
+                  </svg>
+                }
+              </li>
+            }
+          </ul>
         }
-      </select>
+      </div>
       <button type="button" [attr.aria-label]="theme.theme === 'dark' ? i18n.t.theme.light : i18n.t.theme.dark" (click)="theme.toggle()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
           @if (theme.theme === 'dark') {

@@ -11,6 +11,8 @@ interface PortfolioCopy {
   university: string;
   studyPeriod: string;
   angularPeriod: string;
+  kudosRole: string;
+  current: string;
   pause: string;
   play: string;
   skip: string;
@@ -28,6 +30,7 @@ export const PORTFOLIO: Record<AppLang, PortfolioCopy> = {
     university: 'Islamic Azad University',
     studyPeriod: 'Mehr 1405 (September 2026) – present',
     angularPeriod: 'October 2021 – July 2026',
+    kudosRole: 'Project Manager, Kudos', current: 'Current role',
     pause: 'Pause animation', play: 'Play animation', skip: 'Skip to main content',
   },
   fa: {
@@ -41,6 +44,7 @@ export const PORTFOLIO: Record<AppLang, PortfolioCopy> = {
     university: 'دانشگاه آزاد اسلامی',
     studyPeriod: 'مهر ۱۴۰۵ تا اکنون',
     angularPeriod: 'مهر ۱۴۰۰ تا مرداد ۱۴۰۵',
+    kudosRole: 'مدیر پروژهٔ Kudos', current: 'سمت فعلی',
     pause: 'توقف انیمیشن', play: 'پخش انیمیشن', skip: 'رفتن به محتوای اصلی',
   },
   tr: {
@@ -53,6 +57,7 @@ export const PORTFOLIO: Record<AppLang, PortfolioCopy> = {
     masters: 'Bilimsel Hesaplama Yüksek Lisansı',
     university: 'İslami Azad Üniversitesi',
     studyPeriod: 'Eylül 2026’dan beri', angularPeriod: 'Ekim 2021 – Temmuz 2026',
+    kudosRole: 'Kudos Proje Yöneticisi', current: 'Mevcut görev',
     pause: 'Animasyonu duraklat', play: 'Animasyonu oynat', skip: 'Ana içeriğe geç',
   },
   de: {
@@ -65,6 +70,7 @@ export const PORTFOLIO: Record<AppLang, PortfolioCopy> = {
     masters: 'Masterstudium Wissenschaftliches Rechnen',
     university: 'Islamische Azad-Universität',
     studyPeriod: 'Seit September 2026', angularPeriod: 'Oktober 2021 – Juli 2026',
+    kudosRole: 'Projektleiter bei Kudos', current: 'Aktuelle Position',
     pause: 'Animation pausieren', play: 'Animation abspielen', skip: 'Zum Hauptinhalt',
   },
   ja: {
@@ -77,6 +83,7 @@ export const PORTFOLIO: Record<AppLang, PortfolioCopy> = {
     masters: '科学計算 修士課程',
     university: 'イスラム・アザド大学',
     studyPeriod: '2026年9月から在学中', angularPeriod: '2021年10月 – 2026年7月',
+    kudosRole: 'Kudos プロジェクトマネージャー', current: '現在の役職',
     pause: 'アニメーションを一時停止', play: 'アニメーションを再生', skip: 'メインコンテンツへ',
   },
   ru: {
@@ -89,6 +96,7 @@ export const PORTFOLIO: Record<AppLang, PortfolioCopy> = {
     masters: 'Магистратура по научным вычислениям',
     university: 'Исламский университет Азад',
     studyPeriod: 'С сентября 2026 года', angularPeriod: 'Октябрь 2021 – июль 2026',
+    kudosRole: 'Руководитель проекта Kudos', current: 'Текущая должность',
     pause: 'Приостановить анимацию', play: 'Запустить анимацию', skip: 'К основному содержанию',
   },
 };

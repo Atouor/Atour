@@ -119,7 +119,7 @@ const BASE_TRANSLATIONS: Record<'en' | 'fa', SiteTranslations> = {
       copyright: 'Alireza Hossein Aghayee · Built with Angular',
     },
     theme: { light: 'Light Mode', dark: 'Dark Mode' },
-    lang: { switchTo: 'فارسی' },
+    lang: { switchTo: 'Language' },
   },
   fa: {
     nav: { home: 'خانه', about: 'درباره من', experience: 'تجربه', skills: 'مهارت‌ها', contact: 'تماس' },
@@ -205,7 +205,7 @@ const BASE_TRANSLATIONS: Record<'en' | 'fa', SiteTranslations> = {
       copyright: 'علیرضا حسین آقایی · ساخته‌شده با Angular',
     },
     theme: { light: 'حالت روشن', dark: 'حالت تیره' },
-    lang: { switchTo: 'English' },
+    lang: { switchTo: 'زبان' },
   },
 };
 
