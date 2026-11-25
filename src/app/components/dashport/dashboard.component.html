@@ -1,3 +1,4 @@
+<app-original-backdrop [paused]="paused"></app-original-backdrop>
 <main id="main-content" tabindex="-1">
   <section id="home" class="hero" aria-labelledby="hero-title">
     <div class="container hero-grid">
@@ -15,11 +16,7 @@
     </div>
   </section>
 
-  <div class="portfolio-details" [class.still]="paused">
-    <div class="depth-backdrop" aria-hidden="true">
-      <div class="wave near"></div>
-      <div class="wave far"></div>
-    </div>
+  <div class="portfolio-details">
     <div class="details-content">
       <section id="about" class="section container about reveal" aria-labelledby="about-title">
         <img src="assets/images/alireza.webp" [alt]="copy.name" width="400" height="400" loading="lazy" decoding="async">
@@ -79,34 +76,27 @@
 
       <section id="skills" class="section container" aria-labelledby="skills-title">
         <h2 class="section-heading reveal" id="skills-title">{{ i18n.t.nav.skills }}</h2>
-        <div class="skills-grid">
-          <article class="panel featured vibe-skills reveal">
-            <h3>{{ copy.role }}</h3>
-            <ul class="terms">
-              @for (skill of copy.vibeSkills; track skill) { <li>{{ skill }}</li> }
-            </ul>
-          </article>
-          <article class="panel reveal">
-            <h3>{{ copy.engineering }}</h3>
-            <ul class="terms">
-              @for (skill of skills; track skill) { <li>{{ skill }}</li> }
-              @for (skill of i18n.t.skills.other; track skill) { <li>{{ skill }}</li> }
-            </ul>
-          </article>
-          <article class="panel reveal">
-            <h3>{{ i18n.t.skills.agileTitle }}</h3>
-            <ul class="terms">
-              @for (skill of i18n.t.skills.agile; track skill) { <li>{{ skill }}</li> }
-            </ul>
-          </article>
-          <article class="panel spoken reveal">
-            <h3>{{ i18n.t.skills.langsTitle }}</h3>
-            <dl class="languages">
-              @for (language of i18n.t.skills.spoken; track language.name) {
-                <div><dt>{{ language.name }}</dt><dd>{{ language.level }}</dd></div>
+        <div class="skill-browser reveal">
+          <div class="skill-menu" role="group" aria-labelledby="skills-title">
+            @for (group of skillGroups; track $index; let i = $index) {
+              <button type="button" [attr.aria-pressed]="selectedGroup === i" aria-controls="skill-detail"
+                (click)="selectedGroup = i">{{ group.title }}</button>
+            }
+          </div>
+          <div id="skill-detail" aria-live="polite">
+            @for (group of skillGroups; track $index; let i = $index) {
+              @if (selectedGroup === i) {
+                <article class="skill-detail">
+                  <h3>{{ group.title }}</h3>
+                  <ul>
+                    @for (item of group.items; track item; let order = $index) {
+                      <li [style.--order]="order">{{ item }}</li>
+                    }
+                  </ul>
+                </article>
               }
-            </dl>
-          </article>
+            }
+          </div>
         </div>
       </section>
 

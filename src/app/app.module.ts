@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { OriginalBackdropComponent } from './components/background-animation/original-backdrop.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashport/dashboard.component';
@@ -14,6 +15,7 @@ import { TransferDataService } from './services/Transform.service';
     AppComponent,
     HeaderComponent,
     DashboardComponent,
+    OriginalBackdropComponent,
     FooterComponent,
     BackgroundAnimationComponent,
   ],

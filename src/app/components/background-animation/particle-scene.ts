@@ -1,4 +1,4 @@
-import { BufferAttribute, BufferGeometry, Color, PerspectiveCamera, Points, Scene, ShaderMaterial, WebGLRenderer } from 'three';
+import { BufferAttribute, BufferGeometry, Color, PerspectiveCamera, Points, Scene, ShaderMaterial, TorusKnotGeometry, WebGLRenderer } from 'three';
 
 export function createParticleScene(
   stage: HTMLElement,
@@ -14,16 +14,15 @@ export function createParticleScene(
   const count = 12000;
   const positions = new Float32Array(count * 3);
   const sizes = new Float32Array(count);
-  const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+  const knot = new TorusKnotGeometry(1.02, .26, 240, 48, 2, 3);
+  const surface = knot.getAttribute('position');
   for (let i = 0; i < count; i++) {
-    const y = 1 - 2 * (i + .5) / count;
-    const angle = i * goldenAngle;
-    const radial = Math.sqrt(1 - y * y);
-    const radius = 1.48 + .18 * Math.sin(11 * y + 3 * angle);
-    positions.set([radius * radial * Math.cos(angle), radius * y, radius * radial * Math.sin(angle)], i * 3);
+    const vertex = (i * 413) % surface.count;
+    positions.set([surface.getX(vertex), surface.getY(vertex), surface.getZ(vertex)], i * 3);
     sizes[i] = .65 + .75 * ((i * .61803398875) % 1);
   }
 
+  knot.dispose();
   const geometry = new BufferGeometry();
   geometry.setAttribute('position', new BufferAttribute(positions, 3));
   geometry.setAttribute('pointScale', new BufferAttribute(sizes, 1));
@@ -32,17 +31,22 @@ export function createParticleScene(
     depthWrite: false,
     uniforms: {
       time: { value: 0 },
+      assembly: { value: 0 },
       density: { value: 1 },
       nearColor: { value: new Color('#a72e4c') },
       farColor: { value: new Color('#68122a') },
     },
     vertexShader: `
       uniform float time;
+      uniform float assembly;
       uniform float density;
       attribute float pointScale;
       varying float glow;
       void main() {
-        vec3 p = position * (1. + .055 * sin(position.y * 7. + time));
+        float angle = pointScale * 29. + position.z;
+        vec3 cloud = vec3(cos(angle), sin(angle), sin(angle * 3.)) * (2.4 + pointScale);
+        vec3 p = mix(cloud, position, smoothstep(0., 1., assembly));
+        p += .075 * sin(p.yzx * 3. + time * 1.5);
         vec4 viewPosition = modelViewMatrix * vec4(p, 1.);
         glow = smoothstep(-8.6, -5.4, viewPosition.z);
         gl_PointSize = clamp(pointScale * density * (7. / -viewPosition.z), 1., 4.);
@@ -82,6 +86,7 @@ export function createParticleScene(
     const delta = lastTick ? Math.min((now - lastTick) / 1000, .05) : 0;
     lastTick = now;
     const elapsed = material.uniforms['time'].value += delta;
+    material.uniforms['assembly'].value = Math.min(elapsed / 1.8, 1);
     particles.rotation.x += (targetTilt - particles.rotation.x) * delta * 3;
     particles.rotation.y += (.23 * elapsed + targetTurn - particles.rotation.y) * delta * 3;
     draw();
@@ -90,6 +95,7 @@ export function createParticleScene(
   const sync = () => {
     stop();
     if (lost || !visible || document.hidden) return;
+    if (motion.matches) material.uniforms['assembly'].value = 1;
     draw();
     if (!paused && !motion.matches) frame = requestAnimationFrame(animate);
   };
