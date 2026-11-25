@@ -15,10 +15,10 @@
     </div>
   </section>
 
-  <div class="portfolio-details">
+  <div class="portfolio-details" [class.still]="paused">
     <div class="depth-backdrop" aria-hidden="true">
-      <div class="depth-grid"></div>
-      <div class="depth-orbits"></div>
+      <div class="wave near"></div>
+      <div class="wave far"></div>
     </div>
     <div class="details-content">
       <section id="about" class="section container about reveal" aria-labelledby="about-title">
@@ -26,13 +26,14 @@
         <div>
           <h2 id="about-title">{{ i18n.t.nav.about }}</h2>
           <p>{{ copy.background }}</p>
+          <button class="wave-toggle" (click)="paused = !paused">{{ paused ? copy.play : copy.pause }}</button>
         </div>
       </section>
 
       <section class="section container capabilities" aria-labelledby="capabilities-title">
         <h2 class="section-heading reveal" id="capabilities-title">{{ copy.capabilitiesTitle }}</h2>
         <ul class="capability-list">
-          @for (capability of copy.capabilities; track capability.title) {
+          @for (capability of copy.capabilities; track $index) {
             <li class="reveal">
               <h3>{{ capability.title }}</h3>
               <p>{{ capability.description }}</p>
@@ -45,7 +46,7 @@
         <h2 class="section-heading reveal" id="experience-title">{{ i18n.t.experience.heading }} {{ i18n.t.experience.headingAccent }}</h2>
         <div class="experience-grid">
           <div class="experience-stack">
-            @for (job of i18n.t.experience.jobs; track job.company) {
+            @for (job of i18n.t.experience.jobs; track $index) {
               <article class="panel featured reveal">
                 <p class="eyebrow">{{ job.company }}</p>
                 <h3>{{ copy.kudosRole }}</h3>
