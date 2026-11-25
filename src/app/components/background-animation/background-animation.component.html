@@ -1,13 +1,4 @@
 <div #stage class="stage" [class.ready]="ready">
   <div class="fallback" aria-hidden="true"></div>
   <canvas #canvas aria-hidden="true"></canvas>
-  @if (ready && !reducedMotion) {
-    <button type="button" class="motion" (click)="toggle()"
-      [attr.aria-label]="paused ? copy.play : copy.pause" [title]="paused ? copy.play : copy.pause">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        @if (paused) { <path d="m9 5 11 7-11 7Z"/> }
-        @else { <path d="M9 5v14m6-14v14"/> }
-      </svg>
-    </button>
-  }
 </div>

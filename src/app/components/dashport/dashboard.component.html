@@ -1,36 +1,64 @@
-<app-original-backdrop [paused]="paused"></app-original-backdrop>
 <main id="main-content" tabindex="-1">
-  <section id="home" class="hero" aria-labelledby="hero-title">
-    <div class="container hero-grid">
+  <div class="presentation-visual" aria-hidden="true">
+    <app-background-animation></app-background-animation>
+  </div>
+  <section id="home" class="hero chapter-presentation" aria-labelledby="hero-title">
+    <div class="container hero-grid presentation-chapter" id="chapter-intro">
       <div class="hero-copy">
         <p class="eyebrow hero-role">{{ copy.kudosRole }}</p>
-        <h1 id="hero-title">{{ copy.name }}</h1>
+        <h1 id="hero-title" [attr.aria-label]="copy.name">
+          @for (word of words(copy.name); track $index) {
+            <span class="word-mask" aria-hidden="true"><span class="title-word" [style.--word-index]="$index">{{ word }}</span></span>{{ ' ' }}
+          }
+        </h1>
         <p class="hero-headline">{{ copy.headline }}</p>
         <p class="intro">{{ copy.description }}</p>
         <div class="actions">
-          <a class="button primary" href="#experience">{{ i18n.t.nav.experience }} <span aria-hidden="true">↓</span></a>
-          <a class="button" href="#contact">{{ i18n.t.nav.contact }} <span aria-hidden="true">↗</span></a>
+          <a class="button primary" href="#chapter-delivery">{{ copy.capabilitiesTitle }} <span aria-hidden="true">↓</span></a>
+          <a class="button" href="#about">{{ i18n.t.nav.about }} <span aria-hidden="true">↗</span></a>
         </div>
       </div>
-      <div class="hero-side-glass">
-        <app-background-animation></app-background-animation>
-      </div>
     </div>
+    @for (chapter of presentationChapters; track chapter.id; let last = $last) {
+      <section class="container presentation-chapter" [id]="chapter.id" [attr.aria-labelledby]="chapter.id + '-title'">
+        <div class="presentation-copy">
+          <h2 [id]="chapter.id + '-title'" class="reveal" [attr.aria-label]="chapter.title">
+            @for (word of words(chapter.title); track $index) {
+              <span class="word-mask" aria-hidden="true"><span class="title-word" [style.--word-index]="$index">{{ word }}</span></span>{{ ' ' }}
+            }
+          </h2>
+          <p class="intro reveal">{{ chapter.description }}</p>
+          @if (last) {
+            <a class="button primary" href="#about">{{ i18n.t.nav.about }} <span aria-hidden="true">↓</span></a>
+          }
+        </div>
+      </section>
+    }
   </section>
 
   <div class="portfolio-details">
     <div class="details-content">
-      <section id="about" class="section container about reveal" aria-labelledby="about-title">
-        <img src="assets/images/alireza.webp" [alt]="copy.name" width="400" height="400" loading="lazy" decoding="async">
-        <div>
-          <h2 id="about-title">{{ i18n.t.nav.about }}</h2>
-          <p>{{ copy.background }}</p>
-          <button class="wave-toggle" (click)="paused = !paused">{{ paused ? copy.play : copy.pause }}</button>
+      <section id="about" class="section container about" aria-labelledby="about-title">
+        <div class="about-glass reveal">
+          <img src="assets/images/alireza-charcoal.webp" [alt]="copy.name" width="400" height="400" loading="lazy" decoding="async">
+          <div>
+            <h2 id="about-title" class="reveal" [attr.aria-label]="i18n.t.nav.about">
+          @for (word of words(i18n.t.nav.about); track $index) {
+            <span class="word-mask" aria-hidden="true"><span class="title-word" [style.--word-index]="$index">{{ word }}</span></span>{{ ' ' }}
+          }
+        </h2>
+            <p>{{ copy.background }}</p>
+            <a class="button profile-back" href="#home">{{ i18n.t.nav.home }} <span aria-hidden="true">↑</span></a>
+          </div>
         </div>
       </section>
 
       <section class="section container capabilities" aria-labelledby="capabilities-title">
-        <h2 class="section-heading reveal" id="capabilities-title">{{ copy.capabilitiesTitle }}</h2>
+        <h2 class="section-heading reveal" id="capabilities-title" [attr.aria-label]="copy.capabilitiesTitle">
+          @for (word of words(copy.capabilitiesTitle); track $index) {
+            <span class="word-mask" aria-hidden="true"><span class="title-word" [style.--word-index]="$index">{{ word }}</span></span>{{ ' ' }}
+          }
+        </h2>
         <ul class="capability-list">
           @for (capability of copy.capabilities; track $index) {
             <li class="reveal">
@@ -42,7 +70,11 @@
       </section>
 
       <section id="experience" class="section container" aria-labelledby="experience-title">
-        <h2 class="section-heading reveal" id="experience-title">{{ i18n.t.experience.heading }} {{ i18n.t.experience.headingAccent }}</h2>
+        <h2 class="section-heading reveal" id="experience-title" [attr.aria-label]="i18n.t.experience.heading + ' ' + i18n.t.experience.headingAccent">
+          @for (word of words(i18n.t.experience.heading + ' ' + i18n.t.experience.headingAccent); track $index) {
+            <span class="word-mask" aria-hidden="true"><span class="title-word" [style.--word-index]="$index">{{ word }}</span></span>{{ ' ' }}
+          }
+        </h2>
         <div class="experience-grid">
           <div class="experience-stack">
             @for (job of i18n.t.experience.jobs; track $index) {
@@ -77,35 +109,33 @@
       </section>
 
       <section id="skills" class="section container" aria-labelledby="skills-title">
-        <h2 class="section-heading reveal" id="skills-title">{{ i18n.t.nav.skills }}</h2>
-        <div class="skill-browser reveal">
-          <div class="skill-menu" role="group" aria-labelledby="skills-title">
-            @for (group of skillGroups; track $index; let i = $index) {
-              <button type="button" [attr.aria-pressed]="selectedGroup === i" aria-controls="skill-detail"
-                (click)="selectedGroup = i">{{ group.title }}</button>
-            }
-          </div>
-          <div id="skill-detail" aria-live="polite">
-            @for (group of skillGroups; track $index; let i = $index) {
-              @if (selectedGroup === i) {
-                <article class="skill-detail">
-                  <h3>{{ group.title }}</h3>
-                  <ul>
-                    @for (item of group.items; track item; let order = $index) {
-                      <li [style.--order]="order">{{ item }}</li>
-                    }
-                  </ul>
-                </article>
-              }
-            }
-          </div>
+        <h2 class="section-heading reveal" id="skills-title" [attr.aria-label]="i18n.t.nav.skills">
+          @for (word of words(i18n.t.nav.skills); track $index) {
+            <span class="word-mask" aria-hidden="true"><span class="title-word" [style.--word-index]="$index">{{ word }}</span></span>{{ ' ' }}
+          }
+        </h2>
+        <div class="skills-overview">
+          @for (group of skillGroups; track group.title) {
+            <article class="panel skill-detail reveal">
+              <h3>{{ group.title }}</h3>
+              <ul>
+                @for (item of group.items; track item) {
+                  <li>{{ item }}</li>
+                }
+              </ul>
+            </article>
+          }
         </div>
       </section>
 
       <section id="contact" class="section container" aria-labelledby="contact-title">
         <div class="contact panel reveal">
           <div>
-            <h2 id="contact-title">{{ i18n.t.contact.heading }} {{ i18n.t.contact.headingAccent }}</h2>
+            <h2 id="contact-title" class="reveal" [attr.aria-label]="i18n.t.contact.heading + ' ' + i18n.t.contact.headingAccent">
+          @for (word of words(i18n.t.contact.heading + ' ' + i18n.t.contact.headingAccent); track $index) {
+            <span class="word-mask" aria-hidden="true"><span class="title-word" [style.--word-index]="$index">{{ word }}</span></span>{{ ' ' }}
+          }
+        </h2>
             <p>{{ i18n.t.contact.desc }}</p>
           </div>
           <address>

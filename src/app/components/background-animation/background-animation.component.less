@@ -7,23 +7,11 @@
   overflow: hidden;
   aspect-ratio: 1.08;
   background:
-    radial-gradient(ellipse at 50% 52%, #3f0c19 0, transparent 64%),
-    radial-gradient(circle, #383838 0.7px, transparent 0.9px) 50% 50% / 20px 20px,
     #0c0c0c;
   color: #f7f7f7;
-  border: 1px solid #4c202b;
+  border: 1px solid #363636;
   border-radius: 16px;
 }
-.stage::before, .stage::after {
-  content: '';
-  position: absolute;
-  width: 67%;
-  aspect-ratio: 1;
-  border: 1px solid #8d203d54;
-  border-radius: 50%;
-  pointer-events: none;
-}
-.stage::after { width: 82%; border-style: dashed; }
 canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
 .ready canvas { opacity: 1; }
 .fallback {
@@ -31,24 +19,27 @@ canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
   aspect-ratio: 1;
   border-radius: 50%;
   background:
-    radial-gradient(circle, #9d2e49 0.7px, transparent 1.3px) 0 0 / 6px 6px,
-    radial-gradient(circle at 40% 32%, #8f1f3c, #490e1f 62%, #200810 82%);
-  box-shadow: inset 0 0 28px #2c0c16, 0 0 80px #7c163150;
+    radial-gradient(circle, #929292 0.7px, transparent 1.3px) 0 0 / 6px 6px,
+    radial-gradient(circle at 40% 32%, #303030, #181818 62%, #101010 82%);
+  box-shadow: inset 0 0 28px #202020, 0 0 80px #42424250;
 }
 .ready .fallback { visibility: hidden; }
-.motion {
-  z-index: 1;
-  position: absolute;
-  inset-inline-end: 12px;
-  bottom: 12px;
-  inline-size: 44px;
-  padding: 0;
-  display: grid;
-  place-items: center;
-  border: 1px solid #777777;
-  border-radius: 50%;
-  background: #191919;
-  color: inherit;
+:host-context(.presentation-visual) .stage {
+  height: 100svh;
+  aspect-ratio: auto;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
 }
-.motion:hover { background: #66142a; }
-.motion svg { width: 20px; height: 20px; }
+
+:host-context(.presentation-visual) .ready canvas { opacity: .32; }
+
+@media (max-width: 800px) {
+  :host-context(.presentation-visual) .stage { height: calc(100svh - 7.25rem); }
+}
+
+:host-context([data-theme='light']) .ready canvas {
+  filter: brightness(.23);
+  opacity: .43;
+}
+:host-context([data-theme='light']) .fallback { opacity: .28; }

@@ -1,6 +1,6 @@
 :root {
   color-scheme: dark;
-  --page: #080808;
+  --page: #000;
   --surface: #141414;
   --ink: #f7f7f7;
   --muted: #bcbcbc;
@@ -9,8 +9,8 @@
   --on-accent: #121212;
   --gutter: clamp(1rem, 5vw, 4rem);
   --max-width: 1440px;
-  --burgundy: #7c1631;
-  --on-burgundy: #f7f7f7;
+  --action: #171717;
+  --on-action: #f7f7f7;
   --font-main: 'IBM Plex Sans', system-ui, sans-serif;
   --font-label: var(--font-main);
 }
@@ -21,14 +21,14 @@
   --ink: #181818;
   --muted: #535353;
   --line: #a5a5a5;
-  --accent: #74172e;
-  --burgundy: #74172e;
+  --accent: #171717;
+  --action: #171717;
   --on-accent: #f7f7f7;
 }
 :root[lang='fa'] { --font-main: 'Vazirmatn', system-ui, sans-serif; }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-block-start: 7rem; }
-body { margin: 0; background: var(--page); color: var(--ink); overflow-wrap: anywhere; font: 1.0625rem/1.65 var(--font-main); }
+body { margin: 0; background: var(--page); color: var(--ink); overflow-wrap: anywhere; font: 1rem/1.65 var(--font-main); }
 h1, h2, h3, p { margin: 0; }
 p { color: var(--muted); }
 a { color: inherit; text-decoration: none; }
@@ -42,3 +42,116 @@ button:active, a:active { opacity: .74; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
 }
+
+app-dashboard #main-content { position: relative; isolation: isolate; background: var(--page); }
+app-dashboard .chapter-presentation {
+  position: relative;
+  background: transparent;
+  --presentation-text: #f7f5f6;
+  --presentation-muted: #e1dce0;
+}
+app-dashboard .presentation-visual {
+  position: sticky;
+  top: 0;
+  z-index: -1;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  height: 100svh;
+  margin-block-end: -100svh;
+  overflow: clip;
+  pointer-events: none;
+}
+app-dashboard .presentation-visual app-background-animation {
+  width: 100%;
+}
+app-dashboard .chapter-presentation .presentation-chapter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  min-height: max(17rem, 55svh);
+  justify-items: center;
+  pointer-events: none;
+  padding-block: clamp(1.5rem, 3.5vh, 2.75rem);
+}
+app-dashboard .chapter-presentation #chapter-intro { min-height: max(22rem, 68svh); }
+app-dashboard .presentation-chapter .hero-copy,
+app-dashboard .presentation-copy {
+  position: relative;
+  width: min(100%, 61rem);
+  color: var(--presentation-text);
+  text-align: center;
+}
+app-dashboard .presentation-chapter .hero-role,
+app-dashboard .presentation-chapter .actions { justify-content: center; }
+app-dashboard .presentation-chapter .intro {
+  margin-inline: auto;
+  max-width: 51ch;
+  color: var(--presentation-muted);
+  font-size: clamp(.94rem, 1.25vw, 1.12rem);
+  line-height: 1.72;
+  text-shadow: 0 2px 12px #08080a;
+}
+app-dashboard .chapter-presentation :is(.hero-role, .hero-headline, .button) {
+  color: var(--presentation-text);
+}
+app-dashboard .chapter-presentation .hero-role { color: #d0d0d0; }
+app-dashboard .presentation-copy .word-mask {
+  max-width: 100%;
+  vertical-align: baseline;
+}
+app-dashboard .presentation-chapter a { pointer-events: auto; }
+app-dashboard .presentation-copy h2 {
+  font-size: clamp(1.75rem, 4.4vw, 4.2rem);
+  line-height: 1.12;
+  letter-spacing: -.032em;
+  text-shadow: none;
+  margin-block-end: 1.15rem;
+}
+app-dashboard .presentation-copy .intro { margin-block-end: 1.4rem; }
+app-dashboard .profile-back { margin-block-start: 1rem; margin-inline-end: .85rem; }
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    app-dashboard .presentation-chapter { view-timeline-name: --current-chapter; }
+    app-dashboard .presentation-chapter > :is(.hero-copy, .presentation-copy):not(:focus-within) {
+      animation: chapter-crossfade linear both;
+      animation-timeline: --current-chapter;
+      animation-range: cover 0% cover 100%;
+    }
+    app-dashboard #chapter-intro > .hero-copy:not(:focus-within) {
+      animation-name: chapter-intro-exit;
+    }
+    app-dashboard #main-content { view-timeline-name: --presentation; }
+    app-dashboard .presentation-visual app-background-animation {
+      animation: presentation-drift linear both;
+      animation-timeline: --presentation;
+    }
+  }
+}
+@keyframes chapter-crossfade {
+  0%, 18% { opacity: 0; translate: 0 24px; }
+  40%, 60% { opacity: 1; translate: 0 0; }
+  83%, 100% { opacity: 0; translate: 0 -26px; }
+}
+@keyframes chapter-intro-exit {
+  0%, 60% { opacity: 1; translate: 0 0; }
+  83%, 100% { opacity: 0; translate: 0 -26px; }
+}
+@keyframes presentation-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-3%, -4%) rotate(-6deg) scale(1.13); }
+  100% { transform: translate(7%, 8%) rotate(7deg) scale(.9); }
+}
+@media (max-width: 800px) {
+  app-dashboard .presentation-visual { align-items: start; }
+  app-dashboard .presentation-visual app-background-animation { animation-name: none; }
+  app-dashboard .chapter-presentation .presentation-chapter {
+    min-height: max(16rem, 56svh);
+    padding-block: 1.5rem;
+  }
+}
+
+[data-theme='light'] app-dashboard .chapter-presentation { --presentation-text: #181818; --presentation-muted: #383838; }
+[data-theme='light'] app-dashboard .chapter-presentation .hero-role { color: #414141; }
+[data-theme='light'] app-dashboard .chapter-presentation .button.primary { color: var(--on-action); }
+[data-theme='light'] app-dashboard .presentation-chapter .intro { text-shadow: none; }
