@@ -14,16 +14,6 @@
 }
 canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
 .ready canvas { opacity: 1; }
-.fallback {
-  width: 61%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, #929292 0.7px, transparent 1.3px) 0 0 / 6px 6px,
-    radial-gradient(circle at 40% 32%, #303030, #181818 62%, #101010 82%);
-  box-shadow: inset 0 0 28px #202020, 0 0 80px #42424250;
-}
-.ready .fallback { visibility: hidden; }
 :host-context(.presentation-visual) .stage {
   height: 100svh;
   aspect-ratio: auto;
@@ -42,4 +32,6 @@ canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
   filter: brightness(.23);
   opacity: .43;
 }
-:host-context([data-theme='light']) .fallback { opacity: .28; }
+@media (prefers-reduced-motion: no-preference) {
+  canvas { transition: opacity .32s ease-out; }
+}

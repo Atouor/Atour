@@ -21,7 +21,6 @@ export class BackgroundAnimationComponent implements AfterViewInit, OnDestroy {
     private changeDetector: ChangeDetectorRef,
   ) {}
 
-
   ngAfterViewInit(): void {
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     this.zone.runOutsideAngular(async () => {
@@ -35,7 +34,7 @@ export class BackgroundAnimationComponent implements AfterViewInit, OnDestroy {
           });
         });
       } catch {
-        // The CSS illustration remains visible if the WebGL scene cannot start.
+        // The decorative canvas stays hidden if the WebGL scene cannot start.
       }
     });
   }
