@@ -1,11 +1,12 @@
-<a class="skip" href="#main-content">{{ skipLabel }}</a>
+<a class="skip" [routerLink]="[]" fragment="main-content">{{ skipLabel }}</a>
 <header>
   <div class="container header-inner">
-    <a class="brand" href="#home">Atour<span aria-hidden="true">.</span></a>
+    <a class="brand" routerLink="/" fragment="home">Atour<span aria-hidden="true">.</span></a>
     <nav>
       @for (section of sections; track section) {
-        <a [href]="'#' + section">{{ i18n.t.nav[section] }}</a>
+        <a routerLink="/" [fragment]="section">{{ i18n.t.nav[section] }}</a>
       }
+      <a routerLink="/resume" class="resume-link" routerLinkActive="current" ariaCurrentWhenActive="page">{{ resumeLabel }}</a>
     </nav>
     <div class="settings">
       <div class="language-picker" #picker>

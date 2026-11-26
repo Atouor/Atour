@@ -58,7 +58,7 @@ const BASE_TRANSLATIONS: Record<'en' | 'fa', SiteTranslations> = {
       cards: {
         profile: {
           title: 'Profile',
-          text: 'Alireza Hossein Aghayee — 26, based in Ardabil, Iran. B.Sc. in Computer Science from Mohaghegh Ardabili University.',
+          text: 'Alireza Hosein Aghaie — 26, based in Ardabil, Iran. B.Sc. in Computer Science from Mohaghegh Ardabili University.',
         },
         role: {
           title: 'Current Role',
@@ -115,8 +115,8 @@ const BASE_TRANSLATIONS: Record<'en' | 'fa', SiteTranslations> = {
       email: 'Email', phone: 'Phone', location: 'Location', locationVal: 'Ardabil, Iran',
     },
     footer: {
-      tagline: 'Alireza Hossein Aghayee — Front-End Developer',
-      copyright: 'Alireza Hossein Aghayee · Built with Angular',
+      tagline: 'Alireza Hosein Aghaie — Front-End Developer',
+      copyright: 'Alireza Hosein Aghaie · Built with Angular',
     },
     theme: { light: 'Light Mode', dark: 'Dark Mode' },
     lang: { switchTo: 'Language' },
@@ -163,7 +163,7 @@ const BASE_TRANSLATIONS: Record<'en' | 'fa', SiteTranslations> = {
       jobs: [{
         role: 'توسعه‌دهنده ارشد فرانت‌اند و لید تیم',
         company: 'روان ارتباط عصر',
-        period: 'مهر ۱۴۰۰ — اکنون',
+        period: 'اکتبر ۲۰۲۱ — اکنون',
         bullets: [
           'لید تیم فرانت‌اند در محیط اجایل با Jira — برنامه‌ریزی اسپرینت، استندآپ روزانه و تحویل تکراری.',
           'مدیر پروژه و توسعه‌دهنده UI سیستم Kudos — پلتفرم HR سازمانی برای قدردانی از کارکنان.',

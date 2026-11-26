@@ -155,3 +155,30 @@ app-dashboard .profile-back { margin-block-start: 1rem; margin-inline-end: .85re
 [data-theme='light'] app-dashboard .chapter-presentation .hero-role { color: #414141; }
 [data-theme='light'] app-dashboard .chapter-presentation .button.primary { color: var(--on-action); }
 [data-theme='light'] app-dashboard .presentation-chapter .intro { text-shadow: none; }
+
+@media print {
+  @page { size: A4; margin: 13mm 15mm; background: #fff; }
+  :root:has(app-resume) { color-scheme: light; background: #fff; }
+  body:has(app-resume) { background: #fff; color: #171717; }
+}
+
+@font-face {
+  font-family: 'Resume Print Latin';
+  src: url('./assets/fonts/LiberationSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Resume Print Latin';
+  src: url('./assets/fonts/LiberationSans-Bold.ttf') format('truetype');
+  font-weight: 600 800;
+}
+@font-face {
+  font-family: 'Resume Print Arabic';
+  src: url('./assets/fonts/NotoSansArabic-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Resume Print Arabic';
+  src: url('./assets/fonts/NotoSansArabic-Bold.ttf') format('truetype');
+  font-weight: 600 800;
+}

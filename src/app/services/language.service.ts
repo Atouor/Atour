@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Subject } from 'rxjs';
 import { AppLang, SiteTranslations, TRANSLATIONS } from '../i18n/translations';
 
 @Injectable({ providedIn: 'root' })
 export class LanguageService {
   private readonly key = 'atour-lang-v2';
-  private _lang: AppLang = 'en';
+  private readonly _lang = signal<AppLang>('en');
   readonly changed$ = new Subject<AppLang>();
   readonly languages: { code: AppLang; label: string }[] = [
     { code: 'en', label: 'English' },
@@ -22,12 +22,12 @@ export class LanguageService {
     this.set(lang, false);
   }
 
-  get lang(): AppLang { return this._lang; }
-  get t(): SiteTranslations { return TRANSLATIONS[this._lang]; }
-  get isRtl(): boolean { return this._lang === 'fa'; }
+  get lang(): AppLang { return this._lang(); }
+  get t(): SiteTranslations { return TRANSLATIONS[this.lang]; }
+  get isRtl(): boolean { return this.lang === 'fa'; }
 
   set(lang: AppLang, persist = true): void {
-    this._lang = lang;
+    this._lang.set(lang);
     const html = document.documentElement;
     html.setAttribute('lang', lang);
     html.setAttribute('dir', lang === 'fa' ? 'rtl' : 'ltr');

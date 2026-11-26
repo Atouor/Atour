@@ -1,0 +1,74 @@
+<main id="main-content" tabindex="-1" class="resume-page">
+  <div class="resume-toolbar">
+    <span>{{ labels.title }}</span>
+    <button type="button" (click)="exportPdf()">{{ labels.exportPdf }}</button>
+  </div>
+  <article class="resume-sheet" aria-labelledby="resume-name">
+    <div class="resume-heading">
+      <div class="resume-identity">
+        <h1 id="resume-name">{{ copy.name }} <bdi class="resume-nickname">(Atour)</bdi></h1>
+        <p class="role">{{ copy.kudosRole }} · {{ copy.headline }}</p>
+        <address>
+          <span>{{ i18n.t.contact.locationVal }}</span>
+          <a href="mailto:ar.h.a&#64;outlook.com" dir="ltr">ar.h.a&#64;outlook.com</a>
+          <a href="https://atour-aghaie.ir/" dir="ltr">atour-aghaie.ir</a>
+        </address>
+      </div>
+      <img class="resume-portrait" src="assets/images/alireza-charcoal.webp" width="120" height="120" alt="">
+    </div>
+
+    <div class="resume-body">
+      <div class="resume-main">
+
+        <section>
+          <h2>{{ labels.summary }}</h2>
+          <p>{{ copy.description }}</p>
+        </section>
+
+        <section>
+          <h2>{{ i18n.t.nav.experience }}</h2>
+          <div class="entry-heading"><h3>{{ experience.jobs[0].company }}</h3><span>{{ labels.employment }}</span></div>
+          <p>{{ copy.kudosRole }}</p>
+          <ul>
+            @for (capability of copy.capabilities; track capability.title) {
+              <li>{{ capability.description }}</li>
+            }
+          </ul>
+          <p>{{ labels.angular }}</p>
+        </section>
+
+        <section>
+          <h2>{{ labels.projects }}</h2>
+          <h3>Kudos</h3>
+          <p>{{ experience.jobs[0].bullets[1] }}</p>
+        </section>
+
+        <section>
+          <h2>{{ labels.education }}</h2>
+          <div class="entry-heading"><h3>{{ copy.masters }}</h3><span>{{ copy.studyPeriod }}</span></div>
+          <p>{{ copy.university }}, {{ labels.campus }}</p>
+          <p>{{ labels.thesis }}</p>
+          <div class="entry-heading"><h3>{{ experience.education.degree }}</h3><span>{{ labels.bachelorStatus }}</span></div>
+          <p>{{ experience.education.school }}</p>
+        </section>
+
+      </div>
+      <aside class="resume-aside">
+        <section class="resume-skills">
+          <h2>{{ i18n.t.nav.skills }}</h2>
+          <p>{{ copy.vibeSkills.slice(0, 5).join(' · ') }}</p>
+          <p dir="ltr">Angular · TypeScript · JavaScript · HTML/CSS · REST APIs · Git · Jira · Linux</p>
+        </section>
+
+        <section>
+          <h2>{{ i18n.t.skills.langsTitle }}</h2>
+          <ul class="resume-languages">
+            @for (language of i18n.t.skills.spoken; track language.name) {
+              <li>{{ language.name }} ({{ language.level }})</li>
+            }
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </article>
+</main>

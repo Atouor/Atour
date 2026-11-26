@@ -37,8 +37,11 @@ jobs:
       - name: Build Angular
         run: npm run build -- --base-href=/
 
-      - name: Add .nojekyll
-        run: touch dist/atour/.nojekyll
+      - name: Prepare GitHub Pages routes
+        run: |
+          mkdir -p dist/atour/resume
+          cp dist/atour/index.html dist/atour/resume/index.html
+          touch dist/atour/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

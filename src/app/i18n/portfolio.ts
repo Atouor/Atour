@@ -24,7 +24,7 @@ interface PortfolioCopy {
 
 export const PORTFOLIO: Record<AppLang, PortfolioCopy> = {
   en: {
-    name: 'Alireza Hossein Aghayee',
+    name: 'Alireza Hosein Aghaie',
     role: 'Full-stack Vibe Coding',
     headline: "Project leadership and hands-on product development",
     description: "I work with clients to define priorities, lead teams through delivery, and design and build digital products from concept to launch.",
@@ -35,11 +35,11 @@ export const PORTFOLIO: Record<AppLang, PortfolioCopy> = {
       { title: "Client communication", description: "Clarify requirements and trade-offs with clients, share progress, and turn feedback into actionable work." },
       { title: "Product design and development", description: "Design and build web and mobile apps, dashboards, and internal tools with AI-assisted full-stack development." },
     ],
-    background: 'I work at Ravan Ertebat Asr as the project manager for Kudos and actively develop software. I worked with Angular through March 2026, the end of Iranian year 1404. My development focus is now full-stack vibe coding.',
+    background: 'I work at Ravan Ertebat Asr as the project manager for Kudos and actively develop software. I worked with Angular through March 2026. My development focus is now full-stack vibe coding.',
     engineering: 'Engineering toolkit',
     masters: 'Master’s in Scientific Computing',
     university: 'Islamic Azad University',
-    studyPeriod: 'Mehr 1405 (September 2026) – present',
+    studyPeriod: 'September 2026 – present',
     angularPeriod: 'Angular through March 2026',
     employmentPeriod: 'October 2021 – present', previousFocus: 'Previous development focus',
     kudosRole: 'Project Manager, Kudos',
@@ -67,13 +67,13 @@ export const PORTFOLIO: Record<AppLang, PortfolioCopy> = {
       { title: "ارتباط با مشتری", description: "نیازها و گزینه‌ها را با مشتری روشن می‌کنم، پیشرفت را گزارش می‌دهم و بازخورد را به کار قابل اجرا تبدیل می‌کنم." },
       { title: "طراحی و توسعهٔ محصول", description: "از وب و موبایل تا داشبورد و ابزار داخلی، محصول را طراحی می‌کنم و با وایب کدنویسی فول‌استک می‌سازم." },
     ],
-    background: 'در شرکت روان ارتباط عصر مدیر پروژهٔ Kudos هستم و همچنان کد می‌زنم. تا اسفند ۱۴۰۴ با Angular کار می‌کردم و اکنون تمرکزم بر وایب کدنویسی فول‌استک است.',
+    background: 'در شرکت روان ارتباط عصر مدیر پروژهٔ Kudos هستم و همچنان کد می‌زنم. تا مارس ۲۰۲۶ با Angular کار می‌کردم و اکنون تمرکزم بر وایب کدنویسی فول‌استک است.',
     engineering: 'ابزارها و مهارت‌های فنی',
     masters: 'کارشناسی ارشد محاسبات علمی',
     university: 'دانشگاه آزاد اسلامی',
-    studyPeriod: 'مهر ۱۴۰۵ تا اکنون',
-    angularPeriod: 'Angular تا اسفند ۱۴۰۴',
-    employmentPeriod: 'مهر ۱۴۰۰ تا اکنون', previousFocus: 'تمرکز فنی پیشین',
+    studyPeriod: 'سپتامبر ۲۰۲۶ تا اکنون',
+    angularPeriod: 'Angular تا مارس ۲۰۲۶',
+    employmentPeriod: 'اکتبر ۲۰۲۱ تا اکنون', previousFocus: 'تمرکز فنی پیشین',
     kudosRole: 'مدیر پروژهٔ Kudos',
     vibeSkills: [
       'توسعه با کمک هوش مصنوعی',
@@ -88,7 +88,7 @@ export const PORTFOLIO: Record<AppLang, PortfolioCopy> = {
     pause: 'توقف انیمیشن', play: 'پخش انیمیشن', skip: 'رفتن به محتوای اصلی',
   },
   tr: {
-    name: 'Alireza Hossein Aghayee',
+    name: 'Alireza Hosein Aghaie',
     role: 'Full-stack Vibe Coding',
     headline: "Proje yönetimi ve ürün geliştirme",
     description: "Müşterilerle öncelikleri belirliyor, ekipleri teslimata yönlendiriyor ve dijital ürünleri fikirden yayına kadar tasarlayıp geliştiriyorum.",
@@ -119,7 +119,7 @@ export const PORTFOLIO: Record<AppLang, PortfolioCopy> = {
     pause: 'Animasyonu duraklat', play: 'Animasyonu oynat', skip: 'Ana içeriğe geç',
   },
   de: {
-    name: 'Alireza Hossein Aghayee',
+    name: 'Alireza Hosein Aghaie',
     role: 'Full-Stack Vibe Coding',
     headline: "Projektleitung und praktische Produktentwicklung",
     description: "Ich kläre Prioritäten mit Kunden, leite Teams bei der Umsetzung und entwickle digitale Produkte von der Idee bis zur Veröffentlichung.",
@@ -150,7 +150,7 @@ export const PORTFOLIO: Record<AppLang, PortfolioCopy> = {
     pause: 'Animation pausieren', play: 'Animation abspielen', skip: 'Zum Hauptinhalt',
   },
   ja: {
-    name: 'Alireza Hossein Aghayee',
+    name: 'Alireza Hosein Aghaie',
     role: 'フルスタック・バイブコーディング',
     headline: "プロジェクト管理と実践的なプロダクト開発",
     description: "顧客と優先順位を整理し、チームをリードしながら、デジタルプロダクトを企画から公開まで設計・開発します。",

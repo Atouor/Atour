@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import type { AppLang } from '../../i18n/translations';
+import { RESUME_LABELS } from '../../i18n/resume';
 import { PORTFOLIO } from '../../i18n/portfolio';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
@@ -18,6 +19,8 @@ export class HeaderComponent {
   @ViewChild('picker') private picker!: ElementRef<HTMLElement>;
 
   constructor(public theme: ThemeService, public i18n: LanguageService) {}
+
+  get resumeLabel() { return RESUME_LABELS[this.i18n.lang].title; }
 
   get skipLabel() { return PORTFOLIO[this.i18n.lang].skip; }
 
